@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="ceu" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0f1518"/>
+      <stop offset=".35" stop-color="#3a3038"/>
+      <stop offset=".62" stop-color="#b8562b"/>
+      <stop offset=".78" stop-color="#f0a830"/>
+      <stop offset="1" stop-color="#f7d98a"/>
+    </linearGradient>
+    <linearGradient id="mar" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#3b6f70"/>
+      <stop offset=".5" stop-color="#1f4549"/>
+      <stop offset="1" stop-color="#0e1b1d"/>
+    </linearGradient>
+    <radialGradient id="sol" cx=".5" cy=".5" r=".5">
+      <stop offset="0" stop-color="#fff3c4"/>
+      <stop offset=".35" stop-color="#ffd36b" stop-opacity=".9"/>
+      <stop offset="1" stop-color="#ffb347" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#ceu)"/>
+  <circle cx="1020" cy="560" r="300" fill="url(#sol)"/>
+  <circle cx="1020" cy="560" r="62" fill="#fff0b8"/>
+
+  <!-- nuvens carregadas -->
+  <g fill="#0f1518" opacity=".7">
+    <path d="M0 150c200-40 360 20 560-10s360 30 560 0 340-30 480 20V0H0z"/>
+    <path d="M0 260c160-30 280 10 420-10s300 20 460-10 260 10 380-6V190H0z" opacity=".5"/>
+  </g>
+  <g fill="#e2823a" opacity=".35">
+    <path d="M200 430h340c30 0 30 14 0 14H200c-30 0-30-14 0-14z"/>
+    <path d="M1240 400h280c26 0 26 12 0 12h-280c-26 0-26-12 0-12z"/>
+  </g>
+
+  <!-- rochas ao longe -->
+  <g fill="#1a1f22">
+    <path d="M60 640l50-130 34 60 30-90 54 160z"/>
+    <path d="M1420 640l36-90 28 40 24-70 44 120z"/>
+  </g>
+
+  <!-- mar -->
+  <rect y="640" width="1600" height="260" fill="url(#mar)"/>
+  <path d="M0 640h1600v6H0z" fill="#f7c76a" opacity=".6"/>
+  <g stroke="#ffd98a" stroke-width="3" stroke-linecap="round" opacity=".55">
+    <path d="M900 664h240M940 684h160M980 706h80"/>
+  </g>
+  <g fill="none" stroke="#7fd3d6" stroke-width="3" stroke-linecap="round" opacity=".4">
+    <path d="M100 720q40-14 80 0t80 0"/><path d="M420 780q40-14 80 0t80 0"/>
+    <path d="M1160 760q40-14 80 0t80 0"/><path d="M1400 820q40-14 80 0t80 0"/>
+  </g>
+
+  </svg>

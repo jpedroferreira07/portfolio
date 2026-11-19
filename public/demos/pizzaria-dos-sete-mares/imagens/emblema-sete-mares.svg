@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-label="Timão de navio com sete raios e uma pizza no centro">
+  <defs>
+    <radialGradient id="fundo" cx=".5" cy=".4" r=".7">
+      <stop offset="0" stop-color="#2a1d16"/>
+      <stop offset="1" stop-color="#120c09"/>
+    </radialGradient>
+    <linearGradient id="ouro" gradientUnits="userSpaceOnUse" x1="60" y1="40" x2="340" y2="360">
+      <stop offset="0" stop-color="#f6d77a"/>
+      <stop offset=".5" stop-color="#d4a017"/>
+      <stop offset="1" stop-color="#9c7410"/>
+    </linearGradient>
+  </defs>
+
+  <!-- medalhão -->
+  <circle cx="200" cy="200" r="192" fill="url(#fundo)" stroke="url(#ouro)" stroke-width="10"/>
+  <circle cx="200" cy="200" r="174" fill="none" stroke="#8c1c13" stroke-width="5"/>
+
+  <!-- 7 raios do timão: um por mar -->
+  <g stroke-linecap="round">
+    <g id="raios">
+      <g transform="rotate(0 200 200)"><path d="M200 200V50" stroke="#120c09" stroke-width="24"/><path d="M200 200V50" stroke="url(#ouro)" stroke-width="14"/><circle cx="200" cy="46" r="17" fill="url(#ouro)" stroke="#120c09" stroke-width="5"/></g>
+      <g transform="rotate(51.43 200 200)"><path d="M200 200V50" stroke="#120c09" stroke-width="24"/><path d="M200 200V50" stroke="url(#ouro)" stroke-width="14"/><circle cx="200" cy="46" r="17" fill="url(#ouro)" stroke="#120c09" stroke-width="5"/></g>
+      <g transform="rotate(102.86 200 200)"><path d="M200 200V50" stroke="#120c09" stroke-width="24"/><path d="M200 200V50" stroke="url(#ouro)" stroke-width="14"/><circle cx="200" cy="46" r="17" fill="url(#ouro)" stroke="#120c09" stroke-width="5"/></g>
+      <g transform="rotate(154.29 200 200)"><path d="M200 200V50" stroke="#120c09" stroke-width="24"/><path d="M200 200V50" stroke="url(#ouro)" stroke-width="14"/><circle cx="200" cy="46" r="17" fill="url(#ouro)" stroke="#120c09" stroke-width="5"/></g>
+      <g transform="rotate(205.71 200 200)"><path d="M200 200V50" stroke="#120c09" stroke-width="24"/><path d="M200 200V50" stroke="url(#ouro)" stroke-width="14"/><circle cx="200" cy="46" r="17" fill="url(#ouro)" stroke="#120c09" stroke-width="5"/></g>
+      <g transform="rotate(257.14 200 200)"><path d="M200 200V50" stroke="#120c09" stroke-width="24"/><path d="M200 200V50" stroke="url(#ouro)" stroke-width="14"/><circle cx="200" cy="46" r="17" fill="url(#ouro)" stroke="#120c09" stroke-width="5"/></g>
+      <g transform="rotate(308.57 200 200)"><path d="M200 200V50" stroke="#120c09" stroke-width="24"/><path d="M200 200V50" stroke="url(#ouro)" stroke-width="14"/><circle cx="200" cy="46" r="17" fill="url(#ouro)" stroke="#120c09" stroke-width="5"/></g>
+    </g>
+  </g>
+
+  <!-- aro do timão -->
+  <circle cx="200" cy="200" r="104" fill="none" stroke="#120c09" stroke-width="26"/>
+  <circle cx="200" cy="200" r="104" fill="none" stroke="url(#ouro)" stroke-width="16"/>
+
+  <!-- pizza no centro -->
+  <circle cx="200" cy="200" r="74" fill="#c8812a" stroke="#120c09" stroke-width="6"/>
+  <circle cx="200" cy="200" r="62" fill="#f4c542"/>
+  <path d="M200 200L262 200M200 200L156 244M200 200L156 156" stroke="#d99a1e" stroke-width="3" stroke-linecap="round"/>
+  <g fill="#b3261b" stroke="#120c09" stroke-width="2.5">
+    <circle cx="176" cy="172" r="12"/><circle cx="228" cy="176" r="12"/><circle cx="238" cy="222" r="11"/>
+    <circle cx="196" cy="236" r="12"/><circle cx="164" cy="214" r="10"/><circle cx="212" cy="202" r="8"/>
+  </g>
+  <g fill="#3f8f3b"><path d="M222 150c6-8 14-6 14 0-4 6-10 6-14 0z"/><path d="M150 190c6-8 14-6 14 0-4 6-10 6-14 0z"/></g>
+</svg>

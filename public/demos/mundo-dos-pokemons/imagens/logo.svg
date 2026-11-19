@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100" role="img" aria-label="Logo do Mundo dos Pokémons: rosto do Pikachu">
+  <title>Mundo dos Pokémons</title>
+  <defs>
+    <linearGradient id="fundo" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#8b5cf6"/>
+      <stop offset="1" stop-color="#2e1065"/>
+    </linearGradient>
+    <clipPath id="recorte"><circle cx="50" cy="50" r="46"/></clipPath>
+    <path id="orelha" d="M26 42 C20 30 15 18 12 6 C28 8 41 18 46 33 Z"/>
+    <clipPath id="forma-orelha"><use href="#orelha"/></clipPath>
+  </defs>
+
+  <!-- círculo roxo com borda branca -->
+  <circle cx="50" cy="50" r="48" fill="url(#fundo)" stroke="#ffffff" stroke-width="3"/>
+
+  <!-- Pikachu grande, centralizado dentro do círculo -->
+  <g clip-path="url(#recorte)">
+    <g transform="translate(50 52) scale(.78) translate(-50 -49)" stroke="#1e1b4b" stroke-width="3" stroke-linejoin="round">
+      <g>
+        <use href="#orelha" fill="#fcd53f"/>
+        <rect x="0" y="0" width="50" height="19" fill="#1e1b4b" clip-path="url(#forma-orelha)" stroke="none"/>
+      </g>
+      <g transform="translate(100 0) scale(-1 1)">
+        <use href="#orelha" fill="#fcd53f"/>
+        <rect x="0" y="0" width="50" height="19" fill="#1e1b4b" clip-path="url(#forma-orelha)" stroke="none"/>
+      </g>
+      <ellipse cx="50" cy="62" rx="34" ry="30" fill="#fcd53f"/>
+      <circle cx="23" cy="70" r="7.5" fill="#f0527a" stroke="none"/>
+      <circle cx="77" cy="70" r="7.5" fill="#f0527a" stroke="none"/>
+      <circle cx="36" cy="56" r="5.5" fill="#1e1b4b" stroke="none"/>
+      <circle cx="64" cy="56" r="5.5" fill="#1e1b4b" stroke="none"/>
+      <circle cx="37.8" cy="54" r="2" fill="#ffffff" stroke="none"/>
+      <circle cx="65.8" cy="54" r="2" fill="#ffffff" stroke="none"/>
+      <path d="M48 63 L52 63 L50 65.5 Z" fill="#1e1b4b" stroke-width="1.5"/>
+      <path d="M39 69 Q44.5 76 50 69 Q55.5 76 61 69" fill="none" stroke-width="2.5" stroke-linecap="round"/>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,525 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <!--
+      =====================================================================
+      ARQUIVO   : index.html
+      PROJETO   : Pizzaria dos Sete Mares
+      DESCRIÇÃO : PÁGINA INICIAL: hero, história, diferenciais, mais pedidas, rota do tesouro, salão, depoimentos e chamada final.
+      ESTRUTURA : <head> (configurações) > <header> (menu) > <main> (conteúdo) > <footer>.
+      NOTA      : cabeçalho, rodapé e bússola são iguais nas 3 páginas; ao alterar um,
+                  repita a alteração nos outros arquivos.
+      =====================================================================
+    -->
+    <meta charset="UTF-8" />
+    <!--
+      Segurança: Política de Segurança de Conteúdo (CSP). Só permite carregar
+      scripts, imagens e dados do próprio site; CSS e fontes apenas do Google
+      Fonts; e bloqueia plugins (object-src) e troca de <base> (base-uri).
+      'unsafe-inline' vale SÓ para atributos style="" (style-src-attr).
+    -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; style-src-attr 'unsafe-inline'; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; form-action 'self'; base-uri 'none'; object-src 'none'" />
+    <!-- Segurança e privacidade: ao sair para outro site, envia só o domínio (sem o caminho da página) -->
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Início - Pizzaria dos Sete Mares</title>
+    <!-- SEO: resumo da página exibido nos resultados de busca (Google) -->
+    <meta
+      name="description"
+      content="Pizzaria dos Sete Mares: pizzas assadas em forno a lenha, ingredientes frescos e um salão temático de navio pirata. Veja o cardápio e peça pelo WhatsApp."
+    />
+    <!-- Endereço oficial desta página (evita conteúdo duplicado nos buscadores) -->
+    <link rel="canonical" href="https://SEU-USUARIO.github.io/pizzaria-dos-sete-mares/" />
+    <!-- Open Graph e Twitter Card: como o link aparece ao ser compartilhado (WhatsApp, Instagram, Facebook, X...) -->
+    <meta property="og:site_name" content="Pizzaria dos Sete Mares" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://SEU-USUARIO.github.io/pizzaria-dos-sete-mares/" />
+    <meta property="og:title" content="Início - Pizzaria dos Sete Mares" />
+    <meta property="og:description" content="Forno a lenha, ingredientes frescos e muita aventura. Peça a sua!" />
+    <meta property="og:image" content="https://SEU-USUARIO.github.io/pizzaria-dos-sete-mares/imagens/og-imagem.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Salão da pizzaria com mesas de madeira, lampiões acesos e barris" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <!-- Cor da barra do navegador no celular -->
+    <meta name="theme-color" content="#2b1a12" />
+    <!--
+      Dados estruturados (schema.org) para os buscadores entenderem o negócio.
+      Só inclui informações que não dependem de dados reais (o endereço e o telefone
+      do site são fictícios e por isso ficaram de fora).
+    -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Restaurant",
+        "name": "Pizzaria dos Sete Mares",
+        "url": "https://SEU-USUARIO.github.io/pizzaria-dos-sete-mares/",
+        "image": "https://SEU-USUARIO.github.io/pizzaria-dos-sete-mares/imagens/og-imagem.jpg",
+        "description": "Pizzas assadas em forno a lenha, ingredientes frescos e um salão temático de navio pirata.",
+        "servesCuisine": "Pizza",
+        "priceRange": "R$ 30 a R$ 100",
+        "hasMenu": "https://SEU-USUARIO.github.io/pizzaria-dos-sete-mares/servicos.html",
+        "openingHoursSpecification": [
+          { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Tuesday", "Wednesday", "Thursday"], "opens": "18:00", "closes": "23:00" },
+          { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Friday", "Saturday"], "opens": "18:00", "closes": "23:59" },
+          { "@type": "OpeningHoursSpecification", "dayOfWeek": "Sunday", "opens": "17:00", "closes": "23:00" }
+        ]
+      }
+    </script>
+    <!-- Ícone da aba do navegador (favicon) -->
+    <link rel="icon" href="imagens/emblema-sete-mares.svg" />
+    <!-- Ícone ao salvar o site na tela inicial do iPhone/iPad -->
+    <link rel="apple-touch-icon" href="imagens/apple-touch-icon.png" />
+
+    <!-- Google Fonts: o preconnect acelera o carregamento das fontes (Cinzel, Alegreya e Nunito) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,500;0,800;1,500&family=Nunito:wght@400;600;700;800&family=Cinzel+Decorative:wght@700&family=Cinzel:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Roda antes da página aparecer (chegada da transição e preferência de animações); veja entrada.js -->
+    <script src="entrada.js"></script>
+    <!-- Folha de estilos do site (CSS em arquivo externo) -->
+    <link rel="stylesheet" href="style.css" />
+    <!-- JavaScript do site; 'defer' faz o script só rodar depois que o HTML terminou de carregar -->
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <!--
+      Ícones SVG do site (sprite): cada <symbol> é usado nas páginas com
+      <svg><use href="#i-nome"/></svg>. Substitui a biblioteca externa
+      Font Awesome (menos peso e nenhuma dependência de terceiros).
+    -->
+    <svg width="0" height="0" style="position: absolute" aria-hidden="true" focusable="false">
+      <symbol id="i-instagram" viewBox="0 0 24 24">
+        <rect x="3" y="3" width="18" height="18" rx="5" />
+        <circle cx="12" cy="12" r="4" />
+        <circle cx="17.5" cy="6.5" r=".6" />
+      </symbol>
+      <symbol id="i-facebook" viewBox="0 0 24 24">
+        <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+      </symbol>
+      <symbol id="i-whatsapp" viewBox="0 0 24 24">
+        <path d="M3 21l1.65-4.9A9 9 0 1 1 8 19.4L3 21z" />
+        <path d="M9 8.5c0 3.5 3 6.5 6.5 6.5l1-1.5-2-1-1 .8a4.5 4.5 0 0 1-2.1-2.1l.8-1-1-2L9 8.5z" />
+      </symbol>
+    </svg>
+    <!-- Acessibilidade: permite a quem usa teclado pular direto para o conteúdo principal -->
+    <a class="pular-link" href="#conteudo">Pular para o conteúdo</a>
+
+    <!-- ===================== HEADER ===================== -->
+    <header class="cabecalho">
+      <div class="container">
+        <a href="index.html" class="marca" aria-label="Pizzaria dos Sete Mares — página inicial">
+          <img src="imagens/emblema-sete-mares.svg" alt="" class="logo" width="56" height="56" />
+          <span class="razao-social">Pizzaria dos Sete Mares</span>
+        </a>
+
+        <!-- Botão hambúrguer (só aparece no celular); o script.js abre e fecha o menu (seção 1) -->
+        <button type="button" class="btn-menu" aria-expanded="false" aria-controls="menu-principal" aria-label="Abrir menu">
+          <span></span>
+        </button>
+
+        <!-- Menu principal; aria-current="page" marca a página atual (acessibilidade) -->
+        <nav class="nav-principal" id="menu-principal" aria-label="Navegação principal">
+          <ul>
+            <li><a href="index.html" aria-current="page">Início</a></li>
+            <li><a href="servicos.html">Cardápio</a></li>
+            <li><a href="contato.html">Contato</a></li>
+            <li>
+              <a class="nav-cta" href="https://wa.me/5500000000000" target="_blank" rel="noopener noreferrer">Pedir agora<span class="sr-only"> (abre em nova aba)</span></a>
+            </li>
+          </ul>
+        </nav>
+        <!-- Acessibilidade (WCAG 2.2.2): ícone discreto para pausar/retomar as animações que não param sozinhas (script.js, seção 7.5) -->
+        <button type="button" class="btn-pausar" id="btn-pausar" title="Pausar animações">
+          <span class="sr-only">Pausar animações</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- ===== CONTEÚDO PRINCIPAL da página ===== -->
+    <main id="conteudo">
+      <!-- ===================== HERO ===================== -->
+      <!-- ===== 1. HERO: título, chamada e cena animada (navio, chuva e raios) ===== -->
+      <section class="hero">
+        <div class="hero-cena" aria-hidden="true">
+          <div class="chuva"></div>
+          <svg class="navio" viewBox="690 180 620 520" xmlns="http://www.w3.org/2000/svg"><!-- galeão (silhueta) -->
+  <g fill="#070d11" stroke="#070d11" stroke-linejoin="round">
+    <!-- casco -->
+    <path d="M780 600l-70-34 100 20h470l30-70 26 0 0 90q-30 80-150 90H900q-100-14-120-96z" stroke-width="2"/>
+    <rect x="1120" y="500" width="150" height="96" stroke-width="2"/>
+    <!-- mastros -->
+    <rect x="900" y="300" width="9" height="290" stroke="none"/>
+    <rect x="1030" y="200" width="10" height="390" stroke="none"/>
+    <rect x="1170" y="280" width="9" height="300" stroke="none"/>
+    <!-- vergas -->
+    <rect x="860" y="330" width="90" height="5" stroke="none"/>
+    <rect x="985" y="240" width="100" height="5" stroke="none"/>
+    <rect x="985" y="380" width="100" height="5" stroke="none"/>
+    <rect x="1130" y="320" width="90" height="5" stroke="none"/>
+    <!-- velas rasgadas -->
+    <path class="vela" d="M866 336h80l-2 120-12-8-10 20-12-18-12 16-12-20-10 14-8-12z" stroke="none"/>
+    <path class="vela" d="M992 246h88l-2 120-12-10-10 16-14-18-12 20-14-18-10 12-8-14z" stroke="none"/>
+    <path class="vela" d="M988 386h96l-2 132-14-10-12 18-14-20-14 22-14-20-12 16-10-14z" stroke="none"/>
+    <path class="vela" d="M1136 326h78l-2 110-12-8-10 16-12-16-12 14-10-16-8 12z" stroke="none"/>
+    <!-- gurupés e cordas -->
+    <path d="M780 600L700 566" stroke-width="6" fill="none"/>
+    <path d="M905 300L720 566M1035 205L905 305M1035 205L1175 285M1175 285L1250 500" stroke-width="2" fill="none"/>
+    <!-- bandeira -->
+    <path class="bandeira" d="M1040 200l70-14-14 22 14 22z" stroke="none"/>
+  </g>
+  <!-- luzes de lanterna no castelo de popa -->
+  <circle cx="1255" cy="530" r="6" fill="#ffc15a"/>
+  <circle cx="1140" cy="525" r="5" fill="#ffc15a"/>
+
+  </svg>
+          <div class="raio"></div>
+        </div>
+        <div class="container hero-grade">
+          <div class="hero-texto">
+            <span class="sobretitulo">Forno a lenha · Salão de taverna · Entrega rápida</span>
+            <h1>A pizza que <em>até pirata rouba</em></h1>
+            <p class="lead">
+              Massa de fermentação lenta, queijo de verdade e brasa de lenha.
+              Zarpe com a gente pelos sete mares até o melhor tesouro: uma pizza
+              quentinha na sua mesa.
+            </p>
+            <div class="btn-grupo">
+              <a class="btn btn-primario" href="servicos.html">Ver o cardápio</a>
+              <a class="btn btn-claro" href="https://wa.me/5500000000000" target="_blank" rel="noopener noreferrer">
+                <svg class="icone-svg" aria-hidden="true" focusable="false"><use href="#i-whatsapp" /></svg> Pedir no WhatsApp
+              <span class="sr-only"> (abre em nova aba)</span></a>
+            </div>
+          </div>
+</div>
+
+        <!-- Ondas animadas -->
+        <!-- Ondas decorativas em SVG, animadas pelo CSS; aria-hidden esconde de leitores de tela -->
+        <div class="ondas" aria-hidden="true">
+          <svg class="o1" viewBox="0 0 2400 120" preserveAspectRatio="none"><path fill="#2c5a5e" d="M0 60Q150 10 300 60T600 60T900 60T1200 60T1500 60T1800 60T2100 60T2400 60V120H0Z"/></svg>
+          <svg class="o2" viewBox="0 0 2400 120" preserveAspectRatio="none"><path fill="#3b6f70" d="M0 70Q150 25 300 70T600 70T900 70T1200 70T1500 70T1800 70T2100 70T2400 70V120H0Z"/></svg>
+          <svg class="o3" viewBox="0 0 2400 120" preserveAspectRatio="none"><path fill="#f3e9d2" d="M0 85Q150 50 300 85T600 85T900 85T1200 85T1500 85T1800 85T2100 85T2400 85V120H0Z"/></svg>
+        </div>
+      </section>
+
+      <!-- ===================== HISTÓRIA ===================== -->
+      <!-- ===== 2. NOSSA HISTÓRIA: foto em estilo polaroid, texto e números ===== -->
+      <section class="secao" id="historia">
+        <div class="container historia-grade">
+          <figure class="polaroid revelar">
+            <img src="imagens/pizzaiolo-forno.webp" alt="Pizzaiolo de barba, chapéu tricórnio e avental listrado tirando uma pizza do forno a lenha, numa taverna com redes de pesca, lampiões e barris" width="1200" height="896" loading="lazy" />
+            <figcaption>Brasa viva como canhão em dia de batalha</figcaption>
+          </figure>
+
+          <div class="historia-texto revelar atraso-1">
+            <span class="sobretitulo" style="font-family:var(--f-sub);font-style:italic;font-size:1.2rem;color:var(--tinta-suave)">Nossa história</span>
+            <h2>Um galeão de sabor ancorado na cidade</h2>
+            <p>
+              A Pizzaria dos Sete Mares nasceu de uma ideia simples: juntar a tradição do
+              forno a lenha com a diversão de uma boa aventura. Cada pizza é
+              aberta à mão, assada em minutos na brasa e servida num salão que
+              parece o porão de um navio, com direito a baús, mapas e cordas.
+            </p>
+            <p>
+              Aqui a tripulação é família. Seja num jantar a dois ou numa festa
+              de aniversário cheia de piratinhas, o objetivo é o mesmo: ninguém
+              sai de barriga vazia.
+            </p>
+            <div class="numeros">
+              <div class="numero"><strong>12</strong><span>sabores no cardápio</span></div>
+              <div class="numero"><strong>450°</strong><span>de brasa no forno</span></div>
+              <div class="numero"><strong>40min</strong><span>entrega média</span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Divisor visual em forma de corda, com uma caveira no centro -->
+      <hr class="corda" />
+
+      <!-- ===================== OS 3 TESOUROS ===================== -->
+      <!-- ===== 3. OS TRÊS BAÚS: diferenciais da casa ===== -->
+      <section class="secao" id="tesouros">
+        <div class="container">
+          <div class="titulo-secao revelar">
+            <span class="sobretitulo">Por que somos a melhor tripulação</span>
+            <h2>Os três baús da casa</h2>
+          </div>
+
+          <div class="tesouros-grade">
+            <article class="cartao tesouro revelar">
+              <div class="icone">
+                <svg viewBox="0 0 50 50" aria-hidden="true"><path d="M25 3c3 9 13 14 13 27a13 13 0 0 1-26 0c0-6 3-10 6-13 0 5 2 7 4 7-1-7-1-15 3-21z" fill="#8c1c13" stroke="#2b1a12" stroke-width="2.5" stroke-linejoin="round"/><path d="M25 26c2 4 5 6 5 10a5 5 0 0 1-10 0c0-3 3-5 5-10z" fill="#f0c24b"/></svg>
+              </div>
+              <h3>Forno a Lenha</h3>
+              <p>Pizzas assadas em forno a lenha tradicional, no ponto certo de crocância e com aquele cheirinho de brasa.</p>
+            </article>
+
+            <article class="cartao tesouro revelar atraso-1">
+              <div class="icone">
+                <svg viewBox="0 0 50 50" aria-hidden="true"><path d="M7 43C6 21 20 7 44 6c1 24-11 38-37 37z" fill="#5fa35a" stroke="#2b1a12" stroke-width="2.5" stroke-linejoin="round"/><path d="M8 42C20 30 28 22 38 12" fill="none" stroke="#2b1a12" stroke-width="2.5" stroke-linecap="round"/></svg>
+              </div>
+              <h3>Ingredientes Frescos</h3>
+              <p>Selecionamos os melhores ingredientes todos os dias, direto do mercado, sem atalhos nem enlatados.</p>
+            </article>
+
+            <article class="cartao tesouro revelar atraso-2">
+              <div class="icone">
+                <svg viewBox="0 0 50 50" aria-hidden="true"><path d="M5 33h40l-7 11H12z" fill="#8c1c13" stroke="#2b1a12" stroke-width="2.5" stroke-linejoin="round"/><path d="M25 5v28" stroke="#2b1a12" stroke-width="2.5" stroke-linecap="round"/><path d="M23 8v22H10z" fill="#fffaf0" stroke="#2b1a12" stroke-width="2.5" stroke-linejoin="round"/><path d="M27 12v18h13z" fill="#fffaf0" stroke="#2b1a12" stroke-width="2.5" stroke-linejoin="round"/></svg>
+              </div>
+              <h3>Ambiente Temático</h3>
+              <p>Um salão que mistura taverna de porto caribenho e porão de galeão, pra toda a família se divertir enquanto espera a pizza.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== MAIS PEDIDAS ===================== -->
+      <!-- ===== 4. BUTIM MAIS COBIÇADO: pizzas mais pedidas ===== -->
+      <section class="secao secao-escura" id="mais-pedidas">
+        <div class="container">
+          <div class="titulo-secao revelar">
+            <span class="sobretitulo">As favoritas da tripulação</span>
+            <h2>Butim mais cobiçado</h2>
+            <p>Três sabores que nunca saem do cardápio e já conquistaram muito marujo.</p>
+          </div>
+
+          <div class="destaques-grade">
+            <article class="destaque revelar">
+              <div class="foto">
+                <svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="54" fill="#c8812a" stroke="#2b1a12" stroke-width="4"/><circle cx="60" cy="60" r="44" fill="#f4c542"/><g fill="#b3261b" stroke="#2b1a12" stroke-width="2"><circle cx="45" cy="45" r="8"/><circle cx="76" cy="50" r="8"/><circle cx="60" cy="72" r="8"/><circle cx="40" cy="74" r="6"/><circle cx="82" cy="76" r="6"/></g></svg>
+              </div>
+              <div class="corpo">
+                <h3>Calabresa do Capitão</h3>
+                <p>Mussarela, calabresa em rodelas e cebola.</p>
+                <ul class="precos-tamanhos" aria-label="Preços por tamanho">
+                  <li><span>Pequena</span><strong>R$ 35,90</strong></li>
+                  <li><span>Média</span><strong>R$ 50,90</strong></li>
+                  <li><span>Grande</span><strong>R$ 64,90</strong></li>
+                </ul>
+              </div>
+            </article>
+
+            <article class="destaque revelar atraso-1">
+              <div class="foto">
+                <svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="54" fill="#c8812a" stroke="#2b1a12" stroke-width="4"/><circle cx="60" cy="60" r="44" fill="#fff3d6"/><g fill="#b3261b" stroke="#2b1a12" stroke-width="2"><circle cx="44" cy="50" r="9"/><circle cx="76" cy="48" r="9"/><circle cx="60" cy="76" r="9"/></g><g fill="#3f8f3b" stroke="#2b1a12" stroke-width="1.5"><path d="M56 50c6-8 14-6 14 0-4 6-10 6-14 0z"/><path d="M34 70c6-8 14-6 14 0-4 6-10 6-14 0z"/><path d="M72 66c6-8 14-6 14 0-4 6-10 6-14 0z"/></g></svg>
+              </div>
+              <div class="corpo">
+                <h3>Marguerita do Mar</h3>
+                <p>Mussarela, fatias de tomate e manjericão fresco.</p>
+                <ul class="precos-tamanhos" aria-label="Preços por tamanho">
+                  <li><span>Pequena</span><strong>R$ 36,90</strong></li>
+                  <li><span>Média</span><strong>R$ 51,90</strong></li>
+                  <li><span>Grande</span><strong>R$ 66,90</strong></li>
+                </ul>
+              </div>
+            </article>
+
+            <article class="destaque revelar atraso-2">
+              <div class="foto">
+                <svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="54" fill="#c8812a" stroke="#2b1a12" stroke-width="4"/><circle cx="60" cy="60" r="44" fill="#fbe7a1"/><path d="M60 16v88M16 60h88" stroke="#e9b84a" stroke-width="3"/><g fill="#fffaf0" stroke="#2b1a12" stroke-width="1.5"><ellipse cx="42" cy="42" rx="12" ry="9"/><ellipse cx="80" cy="44" rx="11" ry="9"/><ellipse cx="42" cy="80" rx="11" ry="9"/><ellipse cx="80" cy="80" rx="12" ry="9"/></g><g fill="#6c8fd0"><circle cx="45" cy="42" r="3"/><circle cx="80" cy="82" r="3"/></g></svg>
+              </div>
+              <div class="corpo">
+                <h3>Quatro Queijos do Tesouro</h3>
+                <p>Mussarela, provolone, gorgonzola e catupiry.</p>
+                <ul class="precos-tamanhos" aria-label="Preços por tamanho">
+                  <li><span>Pequena</span><strong>R$ 40,90</strong></li>
+                  <li><span>Média</span><strong>R$ 57,90</strong></li>
+                  <li><span>Grande</span><strong>R$ 74,90</strong></li>
+                </ul>
+              </div>
+            </article>
+          </div>
+
+          <div class="faixa-ver-mais revelar">
+            <a class="btn btn-ouro" href="servicos.html">Ver cardápio completo →</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== ROTA DO TESOURO ===================== -->
+      <!-- ===== 5. ROTA DO TESOURO: passo a passo para fazer um pedido ===== -->
+      <section class="secao" id="como-pedir">
+        <div class="container">
+          <div class="titulo-secao revelar">
+            <span class="sobretitulo">Siga o mapa</span>
+            <h2>A rota até a sua pizza</h2>
+          </div>
+
+          <div class="rota">
+            <div class="rota-linha" aria-hidden="true"></div>
+            <div class="passo revelar">
+              <div class="num">1</div>
+              <h3>Escolha o sabor</h3>
+              <p>Navegue pelo cardápio e escolha o tamanho ideal para a tripulação.</p>
+            </div>
+            <div class="passo revelar atraso-1">
+              <div class="num">2</div>
+              <h3>Mande a mensagem</h3>
+              <p>Chame a gente no WhatsApp com seu pedido e endereço.</p>
+            </div>
+            <div class="passo revelar atraso-2">
+              <div class="num">✕</div>
+              <h3>Tesouro entregue</h3>
+              <p>Em até 40 minutos a pizza quente chega na sua porta.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== O SALÃO ===================== -->
+      <section class="secao salao" id="salao">
+        <div class="container">
+          <div class="titulo-secao revelar">
+            <span class="sobretitulo">O ambiente temático</span>
+            <h2>Entre na taverna</h2>
+            <p>
+              Paredes de pedra, vigas de madeira, lampiões acesos, barris,
+              mapas antigos e uma tripulação de chapéu tricórnio servindo as
+              mesas. O salão da Pizzaria dos Sete Mares parece o porão de um
+              galeão e a taverna de um porto movimentado, tudo no mesmo lugar.
+            </p>
+          </div>
+
+          <figure class="panorama revelar">
+            <div class="panorama-moldura">
+              <div class="pan">
+                <img src="imagens/salao-taverna.webp" alt="Salão da pizzaria cheio de clientes jantando em mesas de madeira, com lampiões acesos, barris, mapas antigos na parede de pedra e um garçom de chapéu tricórnio e lenço vermelho servindo pizza" width="2000" height="1493" loading="lazy" />
+                <span class="brilho" style="left: 24.8%; top: 12.7%"></span>
+                <span class="brilho" style="left: 60.5%; top: 15%"></span>
+                <span class="brilho" style="left: 94.8%; top: 17.4%"></span>
+                <span class="brilho" style="left: 37.5%; top: 20.8%"></span>
+              </div>
+            </div>
+            <figcaption>O salão em noite de casa cheia</figcaption>
+          </figure>
+
+          <ul class="salao-detalhes revelar">
+            <li>Capacidade para 80 tripulantes</li>
+            <li>Cantinho do tesouro para a criançada</li>
+            <li>Mesas para grupos e festas</li>
+            <li>Música ambiente de taverna</li>
+          </ul>
+
+          <div class="faixa-ver-mais revelar">
+            <a class="btn btn-ouro" href="contato.html">Reservar uma mesa</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== DEPOIMENTOS ===================== -->
+      <section class="secao" id="diario" style="padding-top:0">
+        <div class="container">
+          <div class="titulo-secao revelar">
+            <span class="sobretitulo">O que dizem por aí</span>
+            <h2>Diário de bordo</h2>
+          </div>
+
+          <div class="depoimentos-grade">
+            <figure class="cartao depoimento revelar">
+              <div class="estrelas" role="img" aria-label="5 estrelas">★★★★★</div>
+              <blockquote>“A borda tem aquele tostadinho de forno a lenha que eu só achava na Itália. Voltei três vezes na mesma semana.”</blockquote>
+              <figcaption><cite>Mariana S.<span>Cliente do salão</span></cite></figcaption>
+            </figure>
+
+            <figure class="cartao depoimento revelar atraso-1">
+              <div class="estrelas" role="img" aria-label="5 estrelas">★★★★★</div>
+              <blockquote>“Fizemos o aniversário do meu filho aqui. As crianças ficaram malucas com as fantasias e a pizza sumiu da mesa.”</blockquote>
+              <figcaption><cite>Rafael T.<span>Festa Imediato</span></cite></figcaption>
+            </figure>
+
+            <figure class="cartao depoimento revelar atraso-2">
+              <div class="estrelas" role="img" aria-label="5 estrelas">★★★★★</div>
+              <blockquote>“Chegou em 30 minutos, ainda quentinha e crocante. A de quatro queijos é covardia.”</blockquote>
+              <figcaption><cite>Camila R.<span>Pedido por entrega</span></cite></figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== CHAMADA FINAL ===================== -->
+      <section class="chamada">
+        <div class="container revelar">
+          <h2>Bateu a fome de aventura?</h2>
+          <p>Peça agora pelo WhatsApp ou venha conhecer o salão. A tripulação já está com o forno aceso.</p>
+          <div class="btn-grupo">
+            <a class="btn btn-ouro" href="https://wa.me/5500000000000" target="_blank" rel="noopener noreferrer">
+              <svg class="icone-svg" aria-hidden="true" focusable="false"><use href="#i-whatsapp" /></svg> Pedir agora
+            <span class="sr-only"> (abre em nova aba)</span></a>
+            <a class="btn btn-claro" href="contato.html">Falar com a gente</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ===================== FOOTER ===================== -->
+    <footer class="rodape rodape-sobre-chamada">
+      <div class="ondas" aria-hidden="true">
+        <svg class="o1" viewBox="0 0 2400 120" preserveAspectRatio="none"><path fill="#2c5a5e" d="M0 60Q150 10 300 60T600 60T900 60T1200 60T1500 60T1800 60T2100 60T2400 60V120H0Z"/></svg>
+        <svg class="o2" viewBox="0 0 2400 120" preserveAspectRatio="none"><path fill="#1f4549" d="M0 70Q150 25 300 70T600 70T900 70T1200 70T1500 70T1800 70T2100 70T2400 70V120H0Z"/></svg>
+        <svg class="o3" viewBox="0 0 2400 120" preserveAspectRatio="none"><path fill="#14292d" d="M0 85Q150 50 300 85T600 85T900 85T1200 85T1500 85T1800 85T2100 85T2400 85V120H0Z"/></svg>
+      </div>
+
+      <div class="container rodape-grade">
+        <div>
+          <div class="rodape-marca">
+            <img src="imagens/emblema-sete-mares.svg" alt="" class="logo" width="64" height="64" loading="lazy" />
+            <span>Pizzaria dos Sete Mares</span>
+          </div>
+          <p>A pizza que os piratas mais temidos dos sete mares adorariam roubar.</p>
+          <nav class="redes-sociais" aria-label="Redes sociais">
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram (abre em nova aba)"><svg class="icone-svg" aria-hidden="true" focusable="false"><use href="#i-instagram" /></svg></a>
+            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook (abre em nova aba)"><svg class="icone-svg" aria-hidden="true" focusable="false"><use href="#i-facebook" /></svg></a>
+            <a href="https://wa.me/5500000000000" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp (abre em nova aba)"><svg class="icone-svg" aria-hidden="true" focusable="false"><use href="#i-whatsapp" /></svg></a>
+          </nav>
+        </div>
+
+        <div>
+          <h3>Horário</h3>
+          <ul>
+            <li>Ter a Qui: 18h às 23h</li>
+            <li>Sex e Sáb: 18h às 00h</li>
+            <li>Domingo: 17h às 23h</li>
+            <li>Segunda: fechado</li>
+          </ul>
+        </div>
+
+        <div>
+          <h3>Navegue</h3>
+          <ul>
+            <li><a href="index.html" style="color:inherit">Início</a></li>
+            <li><a href="servicos.html" style="color:inherit">Cardápio e serviços</a></li>
+            <li><a href="contato.html" style="color:inherit">Contato</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Bússola: botão que volta ao topo da página (script.js, seção 7.4) -->
+      <div class="topo-wrap">
+        <button type="button" class="topo-bussola" aria-label="Voltar ao topo" title="Voltar ao topo">
+          <svg viewBox="0 0 64 64" aria-hidden="true">
+            <circle cx="32" cy="32" r="29" fill="#1b120d" stroke="#d4a017" stroke-width="3"/>
+            <circle cx="32" cy="32" r="23" fill="none" stroke="#8c1c13" stroke-width="1.5"/>
+            <path d="M32 7v6M32 51v6M7 32h6M51 32h6" stroke="#d4a017" stroke-width="2.5" stroke-linecap="round"/>
+            <g class="agulha">
+              <path d="M32 11l7 21H25z" fill="#b3261b"/>
+              <path d="M32 53l-7-21h14z" fill="#f3e9d2"/>
+            </g>
+            <circle cx="32" cy="32" r="3.2" fill="#d4a017" stroke="#1b120d" stroke-width="1"/>
+          </svg>
+        </button>
+      </div>
+
+      <p class="rodape-copy">&copy; <span class="ano-atual">2026</span> Pizzaria dos Sete Mares. Todos os direitos reservados. Desenvolvido por João Pedro Ferreira.</p>
+    </footer>
+
+    <!-- Botão flutuante do WhatsApp, fixo no canto da tela -->
+    <a class="zap-flutuante" href="https://wa.me/5500000000000" target="_blank" rel="noopener noreferrer" aria-label="Pedir pelo WhatsApp (abre em nova aba)">
+      <svg class="icone-svg" aria-hidden="true" focusable="false"><use href="#i-whatsapp" /></svg>
+    </a>
+  </body>
+</html>

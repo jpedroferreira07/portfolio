@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="690 180 620 520"><g transform="translate(2000 0) scale(-1 1)"><!-- galeão (silhueta) -->
+  <g fill="#070d11" stroke="#070d11" stroke-linejoin="round">
+    <!-- casco -->
+    <path d="M780 600l-70-34 100 20h470l30-70 26 0 0 90q-30 80-150 90H900q-100-14-120-96z" stroke-width="2"/>
+    <rect x="1120" y="500" width="150" height="96" stroke-width="2"/>
+    <!-- mastros -->
+    <rect x="900" y="300" width="9" height="290" stroke="none"/>
+    <rect x="1030" y="200" width="10" height="390" stroke="none"/>
+    <rect x="1170" y="280" width="9" height="300" stroke="none"/>
+    <!-- vergas -->
+    <rect x="860" y="330" width="90" height="5" stroke="none"/>
+    <rect x="985" y="240" width="100" height="5" stroke="none"/>
+    <rect x="985" y="380" width="100" height="5" stroke="none"/>
+    <rect x="1130" y="320" width="90" height="5" stroke="none"/>
+    <!-- velas rasgadas -->
+    <path d="M866 336h80l-2 120-12-8-10 20-12-18-12 16-12-20-10 14-8-12z" stroke="none"/>
+    <path d="M992 246h88l-2 120-12-10-10 16-14-18-12 20-14-18-10 12-8-14z" stroke="none"/>
+    <path d="M988 386h96l-2 132-14-10-12 18-14-20-14 22-14-20-12 16-10-14z" stroke="none"/>
+    <path d="M1136 326h78l-2 110-12-8-10 16-12-16-12 14-10-16-8 12z" stroke="none"/>
+    <!-- gurupés e cordas -->
+    <path d="M780 600L700 566" stroke-width="6" fill="none"/>
+    <path d="M905 300L720 566M1035 205L905 305M1035 205L1175 285M1175 285L1250 500" stroke-width="2" fill="none"/>
+    <!-- bandeira -->
+    <path d="M1040 200l70-14-14 22 14 22z" stroke="none"/>
+  </g>
+  <!-- luzes de lanterna no castelo de popa -->
+  <circle cx="1255" cy="530" r="6" fill="#ffc15a"/>
+  <circle cx="1140" cy="525" r="5" fill="#ffc15a"/>
+
+  </g></svg>

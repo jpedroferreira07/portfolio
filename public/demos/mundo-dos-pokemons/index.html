@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data: https://raw.githubusercontent.com; media-src https://raw.githubusercontent.com; connect-src https://pokeapi.co; base-uri 'none'; object-src 'none'; form-action 'none'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>Início – Mundo dos Pokémons</title>
+  <meta name="description" content="Encontre todos os pokémons e monte o seu time dos sonhos no Mundo dos Pokémons.">
+  <meta name="theme-color" content="#2e1065">
+  <!-- Prévia ao compartilhar o link (WhatsApp, redes sociais) -->
+  <meta property="og:site_name" content="Mundo dos Pokémons">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Início – Mundo dos Pokémons">
+  <meta property="og:description" content="Encontre todos os pokémons e monte o seu time dos sonhos no Mundo dos Pokémons.">
+  <meta property="og:image" content="imagens/og-imagem.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Mewtwo em um fundo roxo, com o nome Mundo dos Pokémons">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/svg+xml" href="imagens/favicon.svg">
+  <link rel="apple-touch-icon" href="imagens/apple-touch-icon.png">
+  <link rel="stylesheet" href="style.css">
+  <script src="js/entrada.js"></script>
+  <!-- Dados estruturados (JSON-LD): ajudam o Google a entender o que é o site -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Mundo dos Pokémons",
+      "url": "",
+      "inLanguage": "pt-BR",
+      "description": "Galeria com todos os pokémons, favoritos, detalhes e comparação."
+    }
+  </script>
+  <script type="module" src="js/inicio.js"></script>
+</head>
+<body>
+  <!--
+    Ícones do site em SVG, no próprio HTML: não dependem de nenhum serviço externo e pesam
+    bem menos que uma biblioteca de ícones. Cada ícone é usado com <use href="#i-nome">.
+  -->
+  <svg class="sprite" width="0" height="0" aria-hidden="true" focusable="false">
+    <symbol id="i-casa" viewBox="0 0 24 24"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h5v-6h4v6h5V10"/></symbol>
+    <symbol id="i-galeria" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="1.5"/><path d="M21 16l-5-5-8 8"/></symbol>
+    <symbol id="i-coracao" viewBox="0 0 24 24"><path d="M12 21s-8-5.2-8-11a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 10c0 5.8-8 11-8 11z"/></symbol>
+    <symbol id="i-busca" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></symbol>
+    <symbol id="i-fechar" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+    <symbol id="i-github" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></symbol>
+    <symbol id="i-instagram" viewBox="0 0 448 512"><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></symbol>
+    <symbol id="i-youtube" viewBox="0 0 576 512"><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"/></symbol>
+    <symbol id="i-masterball" viewBox="0 0 64 64"><circle cx="32" cy="32" r="29" fill="#fff" stroke="#1e1b4b" stroke-width="4"/><path d="M3 32a29 29 0 0 1 58 0z" fill="#7c3aed" stroke="#1e1b4b" stroke-width="4" stroke-linejoin="round"/><circle cx="15" cy="22" r="5" fill="#f472b6" stroke="none"/><circle cx="49" cy="22" r="5" fill="#f472b6" stroke="none"/><path d="M26 20V10l6 5 6-5v10" fill="none" stroke="#f472b6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 32h58" fill="none" stroke="#1e1b4b" stroke-width="4"/><circle cx="32" cy="32" r="9" fill="#fff" stroke="#1e1b4b" stroke-width="4"/><circle cx="32" cy="32" r="3.5" fill="#f472b6" stroke="none"/></symbol>
+    <symbol id="i-pokebola" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h5.5M15.5 12H21"/><circle cx="12" cy="12" r="3.2"/></symbol>
+    <symbol id="i-pausar" viewBox="0 0 24 24"><path d="M8 5v14M16 5v14"/></symbol>
+    <symbol id="i-tocar" viewBox="0 0 24 24"><path d="M7 4l13 8-13 8z"/></symbol>
+  </svg>
+  <!-- Mensagens para leitores de tela (ex.: "Pikachu adicionado aos favoritos") -->
+  <div id="anuncios" class="so-leitor" role="status" aria-live="polite"></div>
+
+  <!-- Link para pular direto ao conteúdo -->
+  <a class="pular-conteudo" href="#conteudo">Pular para o conteúdo</a>
+
+  <!-- Igual nas 3 páginas: logo SVG, nav e link da página atual destacado -->
+  <header class="header-site">
+    <div class="container">
+      <a class="logo" href="index.html">
+        <img src="imagens/logo.svg" width="56" height="56" alt="">
+        <span>Mundo dos Pokémons</span>
+      </a>
+      <div class="cabecalho-acoes">
+        <nav class="nav-principal" aria-label="Principal">
+          <ul>
+            <li><a href="index.html" aria-current="page"><svg class="icone" aria-hidden="true" focusable="false"><use href="#i-casa"/></svg><span>Início</span></a></li>
+            <li><a href="galeria.html"><svg class="icone" aria-hidden="true" focusable="false"><use href="#i-galeria"/></svg><span>Galeria</span></a></li>
+            <li>
+              <a href="favoritos.html"><svg class="icone" aria-hidden="true" focusable="false"><use href="#i-coracao"/></svg><span>Favoritos</span>
+                <!-- Preenchido por js/layout.js -->
+                <span class="contador-favoritos">0</span>
+              </a>
+            </li>
+            <li><a href="arena.html"><svg class="icone" aria-hidden="true" focusable="false"><use href="#i-pokebola"/></svg><span>Arena</span></a></li>
+          </ul>
+        </nav>
+        <button type="button" id="botao-pausar" class="botao-pausar" aria-pressed="false" title="Pausar animações" aria-label="Pausar animações">
+          <svg class="icone" aria-hidden="true" focusable="false"><use href="#i-pausar"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="conteudo" class="container">
+    <!-- Imagem em alta resolução, título, subtítulo e CTA para a galeria -->
+    <section class="hero" aria-labelledby="titulo-hero">
+      <div class="hero-texto">
+        <span class="hero-impacto" aria-hidden="true"></span>
+        <span class="hero-etiqueta">Bem-vindo ao Mundo dos Pokémons</span>
+        <h1 id="titulo-hero">
+          <span class="palavra"><span class="palavra-i">Encontre</span></span>
+          <span class="palavra"><span class="palavra-i">todos</span></span>
+          <span class="palavra"><span class="palavra-i">os</span></span>
+          <span class="palavra"><span class="palavra-i">pokémons</span></span>
+          <span class="palavra"><span class="palavra-i">e</span></span>
+          <span class="palavra"><span class="palavra-i">monte</span></span>
+          <span class="palavra"><span class="palavra-i">o</span></span>
+          <span class="palavra"><span class="palavra-i">seu</span></span>
+          <span class="palavra"><span class="palavra-i">time</span></span>
+          <span class="palavra"><span class="palavra-i">dos</span></span>
+          <span class="palavra"><span class="palavra-i">sonhos!</span></span>
+        </h1>
+        <p>Aqui você navega pela galeria completa, descobre os tipos e monta a sua coleção de favoritos.</p>
+        <a class="botao" href="galeria.html">Explorar a galeria</a>
+      </div>
+      <div class="hero-figura">
+        <span class="hero-ataque" aria-hidden="true"></span>
+        <!-- Hero em formato moderno: AVIF com WebP de
+             reserva (bem mais leves), em dois tamanhos (srcset + sizes). width/height e aspect-ratio (CSS) reservam o
+             espaço; loading eager + fetchpriority alto porque é a imagem principal; decoding async -->
+        <picture>
+          <source type="image/avif"
+                  srcset="imagens/hero-mewtwo-522.avif 522w, imagens/hero-mewtwo-1044.avif 1044w"
+                  sizes="(max-width: 767px) 200px, (max-width: 1024px) 230px, 260px">
+          <img class="hero-imagem"
+               src="imagens/hero-mewtwo-1044.webp"
+               srcset="imagens/hero-mewtwo-522.webp 522w, imagens/hero-mewtwo-1044.webp 1044w"
+               sizes="(max-width: 767px) 200px, (max-width: 1024px) 230px, 260px"
+               width="1044" height="1279"
+               alt="Arte oficial do pokémon Mewtwo, um pokémon psíquico cinza e roxo"
+               loading="eager" fetchpriority="high" decoding="async">
+        </picture>
+      </div>
+    </section>
+
+    <!-- Números do site: contam de zero até o valor quando aparecem na tela (js/efeitos-inicio.js) -->
+    <section class="numeros" aria-label="O Mundo dos Pokémons em números">
+      <ul class="numeros-grade">
+        <li class="numero-card">
+          <span class="numero-contador" data-valor="1025">1.025</span>
+          <span class="numero-rotulo">espécies de pokémons</span>
+        </li>
+        <li class="numero-card">
+          <span class="numero-contador" data-valor="18">18</span>
+          <span class="numero-rotulo">tipos para explorar</span>
+        </li>
+        <li class="numero-card">
+          <span class="numero-contador" data-valor="9">9</span>
+          <span class="numero-rotulo">gerações</span>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Arena de batalha: chamada para a página nova -->
+    <section class="arena-chamada" aria-labelledby="titulo-arena">
+      <div class="arena-chamada-texto">
+        <span class="arena-etiqueta">Novidade</span>
+        <h2 id="titulo-arena">Arena de batalha</h2>
+        <p>Escolha o seu pokémon, enfrente um adversário e vença por turnos. Tipos, golpes de verdade, críticos e velocidade decidem quem fica de pé.</p>
+        <ul class="arena-lista">
+          <li>Golpes reais da PokeAPI e tabela de tipos completa</li>
+          <li>Efeitos diferentes para cada tipo de golpe</li>
+          <li>Música de batalha e três dificuldades</li>
+        </ul>
+        <a class="botao" href="arena.html">Entrar na arena</a>
+      </div>
+      <!-- Mini batalha animada (só CSS): dois pokémons do mesmo tipo, então ninguém leva vantagem -->
+      <div class="arena-chamada-arte" aria-hidden="true">
+        <div class="mini-luta">
+          <div class="mini-lado mini-esq">
+            <span class="mini-hp"><span></span></span>
+            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/149.png" width="475" height="475" alt="" loading="lazy" decoding="async">
+            <span class="mini-dano mini-dano-esq">-48</span>
+          </div>
+          <span class="mini-vs">VS</span>
+          <div class="mini-lado mini-dir">
+            <span class="mini-hp"><span></span></span>
+            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/445.png" width="475" height="475" alt="" loading="lazy" decoding="async">
+            <span class="mini-dano mini-dano-dir">-52</span>
+          </div>
+          <span class="mini-golpe mini-golpe-esq"></span>
+          <span class="mini-golpe mini-golpe-dir"></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- O que o site faz: galeria de pokémons e favoritos, que são
+         colecionados como em um carrinho de compras -->
+    <section class="secao-sobre" aria-labelledby="titulo-sobre">
+      <h2 id="titulo-sobre">Como o Mundo dos Pokémons funciona</h2>
+      <ol class="passos">
+        <li class="passo">
+          <span class="passo-icone" aria-hidden="true"><svg class="icone" focusable="false"><use href="#i-busca"/></svg></span>
+          <span class="passo-numero" aria-hidden="true">1</span>
+          <h3><a href="galeria.html">Explore a galeria</a></h3>
+          <p>Veja todos os pokémons em cards com imagem, tipo, HP, peso e altura. Busque pelo nome ou filtre por tipo.</p>
+        </li>
+        <li class="passo">
+          <span class="passo-icone" aria-hidden="true"><svg class="icone" focusable="false"><use href="#i-coracao"/></svg></span>
+          <span class="passo-numero" aria-hidden="true">2</span>
+          <h3><a href="galeria.html">Escolha seus favoritos</a></h3>
+          <p>Clique em favoritar nos cards dos pokémons que você mais gosta. Eles entram na sua coleção, como itens de um carrinho.</p>
+        </li>
+        <li class="passo">
+          <span class="passo-icone" aria-hidden="true"><svg class="icone" focusable="false"><use href="#i-galeria"/></svg></span>
+          <span class="passo-numero" aria-hidden="true">3</span>
+          <h3><a href="favoritos.html">Acompanhe sua coleção</a></h3>
+          <p>Veja o resumo com as médias de peso, altura e HP e os tipos dos escolhidos. Remova um item quando quiser.</p>
+        </li>
+        <li class="passo">
+          <span class="passo-icone" aria-hidden="true"><svg class="icone" focusable="false"><use href="#i-pokebola"/></svg></span>
+          <span class="passo-numero" aria-hidden="true">4</span>
+          <h3><a href="arena.html">Entre na arena</a></h3>
+          <p>Escolha o seu pokémon e batalhe por turnos contra o adversário, usando os tipos e os golpes a seu favor.</p>
+        </li>
+      </ol>
+    </section>
+
+    <!-- Faixa de tipos: anda sozinha e acelera com a rolagem (js/efeitos-inicio.js); cada tipo abre a galeria filtrada -->
+    <section class="tipos-faixa" aria-label="Tipos de pokémon">
+      <div class="faixa" role="group" aria-label="Tipos de pokémon: escolha um para ver na galeria">
+        <div class="faixa-trilho">
+          <ul class="faixa-lista">
+            <li><a class="selo-tipo tipo-normal" href="galeria.html?tipos=normal">Normal</a></li>
+            <li><a class="selo-tipo tipo-fire" href="galeria.html?tipos=fire">Fogo</a></li>
+            <li><a class="selo-tipo tipo-water" href="galeria.html?tipos=water">Água</a></li>
+            <li><a class="selo-tipo tipo-electric" href="galeria.html?tipos=electric">Elétrico</a></li>
+            <li><a class="selo-tipo tipo-grass" href="galeria.html?tipos=grass">Planta</a></li>
+            <li><a class="selo-tipo tipo-ice" href="galeria.html?tipos=ice">Gelo</a></li>
+            <li><a class="selo-tipo tipo-fighting" href="galeria.html?tipos=fighting">Lutador</a></li>
+            <li><a class="selo-tipo tipo-poison" href="galeria.html?tipos=poison">Veneno</a></li>
+            <li><a class="selo-tipo tipo-ground" href="galeria.html?tipos=ground">Terrestre</a></li>
+            <li><a class="selo-tipo tipo-flying" href="galeria.html?tipos=flying">Voador</a></li>
+            <li><a class="selo-tipo tipo-psychic" href="galeria.html?tipos=psychic">Psíquico</a></li>
+            <li><a class="selo-tipo tipo-bug" href="galeria.html?tipos=bug">Inseto</a></li>
+            <li><a class="selo-tipo tipo-rock" href="galeria.html?tipos=rock">Pedra</a></li>
+            <li><a class="selo-tipo tipo-ghost" href="galeria.html?tipos=ghost">Fantasma</a></li>
+            <li><a class="selo-tipo tipo-dragon" href="galeria.html?tipos=dragon">Dragão</a></li>
+            <li><a class="selo-tipo tipo-dark" href="galeria.html?tipos=dark">Sombrio</a></li>
+            <li><a class="selo-tipo tipo-steel" href="galeria.html?tipos=steel">Aço</a></li>
+            <li><a class="selo-tipo tipo-fairy" href="galeria.html?tipos=fairy">Fada</a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Chamada final – os CTAs para as outras páginas ficam aqui, separados da explicação -->
+    <section class="chamada-final" aria-labelledby="titulo-chamada">
+      <div class="chamada-texto">
+        <h2 id="titulo-chamada">Pronto para montar a sua coleção e derrotar seus inimigos?</h2>
+        <p>Comece pela galeria ou confira os pokémons que você já escolheu.</p>
+        <div class="chamada-botoes">
+          <a class="botao" href="galeria.html">Explorar a galeria</a>
+          <a class="botao botao-secundario" href="favoritos.html">Meus favoritos</a>
+          <a class="botao botao-secundario" href="arena.html">Batalhar na arena</a>
+        </div>
+      </div>
+      <!-- Imagens abaixo da dobra: width/height, loading lazy e decoding async -->
+      <div class="chamada-figuras">
+        <img src="imagens/gengar-240.png" width="240" height="240" alt="Arte oficial do pokémon Gengar, roxo e sorridente" loading="lazy" decoding="async">
+        <img class="figura-central" src="imagens/pikachu-240.png" width="240" height="240" alt="Arte oficial do pokémon Pikachu" loading="lazy" decoding="async">
+        <img src="imagens/eevee-240.png" width="240" height="240" alt="Arte oficial do pokémon Eevee" loading="lazy" decoding="async">
+      </div>
+    </section>
+  </main>
+
+  <!-- Igual nas 3 páginas: redes sociais, direitos autorais e data dinâmica -->
+  <footer class="footer-site">
+    <div class="container">
+      <div class="footer-topo">
+        <button type="button" class="botao-topo" aria-label="Voltar ao topo da página" title="Voltar ao topo">
+          <svg class="icone-bola" width="56" height="56" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><use href="#i-masterball"/></svg>
+        </button>
+        <nav aria-label="Redes sociais">
+          <ul class="social">
+            <li><a href="https://github.com" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><svg class="icone" aria-hidden="true" focusable="false"><use href="#i-github"/></svg></a></li>
+            <li><a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg class="icone" aria-hidden="true" focusable="false"><use href="#i-instagram"/></svg></a></li>
+            <li><a href="https://youtube.com" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><svg class="icone" aria-hidden="true" focusable="false"><use href="#i-youtube"/></svg></a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="footer-base">
+        <p>&copy; <span class="ano-atual">2026</span> Mundo dos Pokémons. Todos os direitos reservados. Desenvolvido por João Pedro Ferreira.</p>
+        <!-- Preenchida por js/layout.js -->
+        <time id="data-atual"></time>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,1098 @@
+/**
+ * =============================================================================
+ * ARQUIVO   : style.css
+ * PROJETO   : Pizzaria dos Sete Mares
+ * DESCRIÇÃO : Folha de estilos única, usada pelas três páginas do site.
+ *
+ * ÍNDICE
+ *   1. Variáveis (cores, fontes, medidas)
+ *   2. Base (reset, tipografia, utilitários)
+ *   3. Componentes reutilizáveis (botões, cabeçalho, ondas, cartões, rodapé)
+ *   4. Página inicial
+ *   5. Cardápio e serviços
+ *   6. Contato
+ *   7. Responsivo (tablet e celular)
+ *   8. Animações: navio, mar, chuva e raio
+ *   9. Interações: ondas ao clicar, transição de página, progresso e bússola
+ *  10. Seção "O salão"
+ *
+ * OBSERVAÇÕES PARA QUEM FOR DAR MANUTENÇÃO
+ *   - As cores e fontes ficam em variáveis (:root). Para mudar o visual do site
+ *     inteiro, altere só a seção 1.
+ *   - Nomes de classes em português, separados por hífen (ex.: .btn-primario).
+ *   - Classes como .visivel, .aberto, .erro e .girando NÃO são escritas no HTML:
+ *     elas são adicionadas e removidas pelo script.js.
+ * =============================================================================
+ */
+
+/* ---------- 1. Variáveis ---------- */
+/* Variáveis globais: usadas no CSS inteiro com var(--nome). Mudou aqui, mudou no site todo. */
+:root {
+  --pergaminho: #f3e9d2;
+  --pergaminho-2: #ead9b4;
+  --pergaminho-3: #dcc796;
+  --tinta: #2b1a12;
+  --tinta-suave: #5a4234;
+  --vermelho: #8c1c13;
+  --vermelho-vivo: #b3261b;
+  --ouro: #d4a017;
+  --ouro-claro: #f0c24b;
+  --oceano: #2c5a5e;
+  --oceano-escuro: #14292d;
+  --noite: #0f1518;
+  --branco: #fffaf0;
+
+  --f-titulo: "Cinzel Decorative", "Georgia", serif;
+  --f-titulo-2: "Cinzel", "Georgia", serif;
+  --f-sub: "Alegreya", "Georgia", serif;
+  --f-corpo: "Nunito", system-ui, sans-serif;
+
+  --raio: 14px;
+  --sombra: 0 10px 28px rgb(43, 26, 18, 0.18);
+  --sombra-forte: 0 18px 40px rgb(43, 26, 18, 0.28);
+  --altura-header: 78px;
+}
+
+/* ---------- 2. Base ---------- */
+/* Reset: zera margens e espaçamentos padrão do navegador e faz a largura de cada caixa incluir padding e borda (border-box). */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+/* Rolagem suave ao clicar em âncoras; scroll-padding-top evita que o cabeçalho fixo cubra o título de destino. */
+html { scroll-behavior: smooth; scroll-padding-top: calc(var(--altura-header) + 16px); }
+
+/* Estilo base de todas as páginas: fonte, cor, fundo de pergaminho (ruído SVG + manchas de luz) e layout em coluna. */
+body {
+  font-family: var(--f-corpo);
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--tinta);
+  background-color: var(--pergaminho);
+  /* textura de papel: ruído SVG + manchas suaves */
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .35 0 0 0 0 .22 0 0 0 0 .1 0 0 0 .09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
+    radial-gradient(ellipse at 15% 10%, rgb(212, 160, 23, 0.12), transparent 45%),
+    radial-gradient(ellipse at 90% 80%, rgb(140, 28, 19, 0.08), transparent 50%);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+
+/* O conteúdo ocupa o espaço que sobra e empurra o rodapé para o fim da tela, mesmo em páginas curtas. */
+main { flex: 1; }
+
+/* Imagens nunca ultrapassam a largura do contêiner (comportamento responsivo). */
+img { max-width: 100%; height: auto; display: block; }
+a { color: var(--vermelho); }
+ul { list-style: none; }
+
+/* Títulos: h1 usa a fonte decorativa (impacto); h2 e h3 usam Cinzel, mais legível em tamanhos menores. */
+h1, h2, h3 { font-family: var(--f-titulo-2); font-weight: 700; line-height: 1.2; letter-spacing: .02em; }
+h1 { font-family: var(--f-titulo); }
+h1 { font-size: clamp(2.2rem, 5.4vw, 4rem); }
+h2 { font-size: clamp(1.6rem, 3.6vw, 2.4rem); color: var(--vermelho); }
+h3 { font-size: 1.25rem; }
+
+/* Anel de foco duplo ao navegar pelo teclado: dourado junto do elemento e escuro por fora, para ter contraste em qualquer fundo (acessibilidade). */
+:focus-visible {
+  outline: 3px solid var(--tinta);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 3px var(--ouro-claro);
+  border-radius: 4px;
+}
+
+/* Contêiner central: largura máxima de 1140px e 20px de margem em cada lado. */
+.container { width: min(1140px, 100% - 40px); margin-inline: auto; }
+/* Seção padrão: espaçamento vertical grande entre blocos. */
+.secao { padding: 88px 0; position: relative; }
+.secao-escura { background: radial-gradient(ellipse at 50% 0%, #2a2320, var(--noite) 70%); color: var(--pergaminho); }
+.secao-escura h2 { color: var(--ouro-claro); }
+
+/* Esconde visualmente, mas mantém o texto disponível para leitores de tela. */
+.sr-only {
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap;
+}
+
+/* Link 'pular para o conteúdo': fica fora da tela e só aparece quando recebe foco do teclado. */
+.pular-link {
+  position: absolute; left: 12px; top: -60px; z-index: 200;
+  background: var(--ouro); color: var(--tinta); padding: 10px 16px;
+  border-radius: 8px; font-weight: 800; text-decoration: none;
+}
+.pular-link:focus { top: 12px; }
+
+/* Cabeçalho de seção */
+/* Bloco de título centralizado usado no início de cada seção. */
+.titulo-secao { text-align: center; max-width: 680px; margin: 0 auto 52px; }
+.titulo-secao .sobretitulo {
+  font-family: var(--f-sub); font-style: italic; font-size: 1.2rem;
+  color: var(--tinta-suave); display: block; margin-bottom: 6px;
+}
+.titulo-secao p { margin-top: 14px; color: var(--tinta-suave); }
+.secao-escura .titulo-secao p, .secao-escura .sobretitulo { color: var(--pergaminho-3); }
+
+/* Divisor de corda */
+/* Divisor em forma de corda (listras diagonais). */
+.corda {
+  height: 14px; border: 0; margin: 0; position: relative; overflow: visible; z-index: 2;
+  background: repeating-linear-gradient(115deg, var(--pergaminho-3) 0 7px, #b89a5e 7px 11px);
+  box-shadow: inset 0 2px 0 rgb(255,255,255,.25), inset 0 -2px 0 rgb(0,0,0,.18);
+}
+
+/* Caveira no meio da corda */
+.corda::after {
+  content: ""; position: absolute; left: 50%; top: 50%; width: 52px; height: 52px; transform: translate(-50%, -50%);
+  border-radius: 50%; background-color: var(--pergaminho); border: 3px solid var(--tinta); box-shadow: 0 4px 0 var(--tinta);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M32 10C20 10 13 18 13 28c0 6 3 10 8 13v7h22v-7c5-3 8-7 8-13C51 18 44 10 32 10z' fill='%23f3e9d2' stroke='%232b1a12' stroke-width='3'/%3E%3Ccircle cx='24' cy='28' r='5' fill='%232b1a12'/%3E%3Ccircle cx='40' cy='28' r='5' fill='%232b1a12'/%3E%3Cpath d='M32 33l-3 6h6z' fill='%232b1a12'/%3E%3Cpath d='M26 48v-5M32 48v-5M38 48v-5' stroke='%232b1a12' stroke-width='2.5'/%3E%3C/svg%3E");
+  background-size: 78%; background-position: center; background-repeat: no-repeat;
+}
+
+/* ---------- 3. Componentes ---------- */
+
+/* Botões (placas de madeira / selo de cera) */
+/* Botão base: aparência de 'placa' com sombra sólida; sobe ao passar o mouse e afunda ao clicar. */
+.btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family: var(--f-sub); font-weight: 800; font-size: 1.15rem;
+  padding: 14px 28px; border-radius: 12px; border: 3px solid var(--tinta);
+  text-decoration: none; cursor: pointer; line-height: 1.1;
+  transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+  box-shadow: 0 5px 0 var(--tinta);
+}
+.btn:hover { transform: translateY(-3px) rotate(-1deg); box-shadow: 0 8px 0 var(--tinta); }
+.btn:active { transform: translateY(3px); box-shadow: 0 2px 0 var(--tinta); }
+.btn-primario { background: var(--vermelho); color: var(--branco); }
+.btn-primario:hover { background: var(--vermelho-vivo); }
+.btn-ouro { background: var(--ouro); color: var(--tinta); }
+.btn-ouro:hover { background: var(--ouro-claro); }
+.btn-claro { background: var(--pergaminho); color: var(--tinta); }
+.btn-zap { background: #1a7a43; color: #fff; }
+.btn-grupo { display: flex; flex-wrap: wrap; gap: 18px; }
+
+/* Cabeçalho */
+/* Cabeçalho fixo no topo (position: sticky). A borda vermelha é preenchida de amarelo pela barra de progresso. */
+.cabecalho {
+  position: sticky; top: 0; z-index: 100;
+  height: var(--altura-header);
+  background: var(--noite);
+  border-bottom: 4px solid var(--vermelho);
+  transition: background .3s, box-shadow .3s;
+}
+.cabecalho.rolou { background: rgb(15, 21, 24, 0.93); backdrop-filter: blur(8px); box-shadow: 0 8px 24px rgb(0,0,0,.3); }
+.cabecalho .container { height: 100%; display: flex; align-items: center; justify-content: space-between; }
+
+.marca { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+.logo { height: 56px; width: 56px; object-fit: cover; border-radius: 50%; border: 3px solid var(--ouro); background: var(--pergaminho); }
+.razao-social { font-family: var(--f-titulo-2); font-size: 1.15rem; color: var(--pergaminho); letter-spacing: .04em; line-height: 1.1; }
+
+/* Menu de navegação em linha (versão desktop). */
+.nav-principal ul { display: flex; align-items: center; gap: 6px; }
+.nav-principal a {
+  display: block; position: relative; padding: 8px 16px; color: var(--pergaminho);
+  text-decoration: none; font-weight: 700; font-family: var(--f-sub); font-size: 1.15rem;
+}
+.nav-principal a::after {
+  content: ""; position: absolute; left: 16px; right: 16px; bottom: 2px; height: 5px; border-radius: 3px;
+  background: repeating-linear-gradient(115deg, var(--ouro) 0 5px, #9c7410 5px 8px);
+  transform: scaleX(0); transform-origin: left; transition: transform .25s ease;
+}
+.nav-principal a:hover { color: var(--ouro-claro); }
+.nav-principal a:hover::after, .nav-principal a[aria-current="page"]::after { transform: scaleX(1); }
+.nav-principal a[aria-current="page"] { color: var(--ouro-claro); }
+.nav-principal .nav-cta { background: var(--ouro); color: var(--tinta); border-radius: 10px; margin-left: 8px; }
+.nav-principal .nav-cta::after { display: none; }
+.nav-principal .nav-cta:hover { background: var(--ouro-claro); color: var(--tinta); }
+
+/* Botão hambúrguer: escondido no desktop (display: none); aparece no @media de celular. */
+.btn-menu {
+  display: none; background: none; border: 2px solid var(--ouro); color: var(--ouro);
+  width: 46px; height: 46px; border-radius: 10px; cursor: pointer;
+  align-items: center; justify-content: center;
+}
+.btn-menu span, .btn-menu span::before, .btn-menu span::after {
+  display: block; width: 22px; height: 3px; background: currentColor; border-radius: 2px;
+  position: relative; transition: transform .25s, background .25s;
+}
+.btn-menu span::before, .btn-menu span::after { content: ""; position: absolute; left: 0; }
+.btn-menu span::before { top: -7px; }
+.btn-menu span::after { top: 7px; }
+.btn-menu[aria-expanded="true"] span { background: transparent; }
+.btn-menu[aria-expanded="true"] span::before { transform: translateY(7px) rotate(45deg); }
+.btn-menu[aria-expanded="true"] span::after { transform: translateY(-7px) rotate(-45deg); }
+
+/* Ondas */
+/* Ondas decorativas: 3 SVGs sobrepostos, cada um deslizando em uma velocidade. */
+.ondas { position: absolute; left: 0; right: 0; bottom: -1px; height: 90px; overflow: hidden; line-height: 0; }
+.ondas svg { position: absolute; bottom: 0; left: 0; width: 200%; height: 100%; }
+.ondas .o1 { animation: onda 14s linear infinite; opacity: .55; }
+.ondas .o2 { animation: onda 9s linear infinite reverse; opacity: .8; }
+.ondas .o3 { animation: onda 20s linear infinite; }
+/* Desliza o SVG metade da própria largura; como o desenho se repete, o loop parece contínuo. */
+@keyframes onda { to { transform: translateX(-50%); } }
+
+/* Cartões */
+/* Cartão padrão: borda escura e sombra sólida (estilo 'cartaz'). */
+.cartao {
+  background: var(--branco); border: 3px solid var(--tinta); border-radius: var(--raio);
+  box-shadow: 6px 6px 0 var(--tinta); padding: 28px; position: relative;
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+.cartao:hover { transform: translate(-3px, -4px) rotate(-.6deg); box-shadow: 10px 10px 0 var(--tinta); }
+
+/* Selo giratório */
+.selo {
+  width: 132px; height: 132px; border-radius: 50%; background: var(--vermelho); color: var(--ouro-claro);
+  border: 4px double var(--ouro-claro); display: grid; place-items: center; text-align: center;
+  font-family: var(--f-titulo); font-size: 1.35rem; line-height: 1.05;
+  box-shadow: var(--sombra); transform: rotate(-12deg);
+}
+.selo small { display: block; font-family: var(--f-corpo); font-size: .7rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 800; }
+
+/* Revelar ao rolar */
+/* Animação de entrada: começa invisível e deslocado; a classe .visivel é adicionada pelo script.js (seção 3). */
+.revelar {
+  opacity: 0; translate: 0 32px;
+  transition: opacity .7s ease var(--atraso, 0s), translate .7s ease var(--atraso, 0s),
+              transform .25s ease, box-shadow .25s ease, background .2s ease;
+}
+.revelar.visivel { opacity: 1; translate: none; }
+.atraso-1 { --atraso: .12s; }
+.atraso-2 { --atraso: .24s; }
+.atraso-3 { --atraso: .36s; }
+
+/* WhatsApp flutuante */
+/* Botão flutuante do WhatsApp, fixo no canto inferior direito. */
+.zap-flutuante {
+  position: fixed; right: 20px; bottom: 20px; z-index: 90;
+  width: 62px; height: 62px; border-radius: 50%; background: #1a7a43; color: #fff;
+  display: grid; place-items: center; font-size: 32px; text-decoration: none;
+  border: 3px solid var(--tinta); box-shadow: 0 6px 0 var(--tinta);
+  animation: balancar 3.5s ease-in-out infinite;
+}
+.zap-flutuante:hover { background: #1f8a4c; }
+@keyframes balancar { 0%, 100% { transform: rotate(-6deg); } 50% { transform: rotate(6deg) translateY(-4px); } }
+
+/* Rodapé */
+/* Rodapé escuro, com as ondas posicionadas acima dele. */
+.rodape { background: var(--oceano-escuro); color: var(--pergaminho); position: relative; margin-top: 90px; }
+.rodape .ondas { top: -89px; bottom: auto; }
+.rodape-grade { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 40px; padding: 40px 0 36px; }
+.rodape h3 { font-size: 1.1rem; color: var(--ouro-claro); margin-bottom: 12px; }
+.rodape p, .rodape li { color: #d4dde0; font-size: .98rem; }
+.rodape li { padding: 2px 0; }
+.rodape-marca { display: flex; gap: 14px; align-items: center; margin-bottom: 14px; }
+.rodape-marca .logo { height: 64px; width: 64px; }
+.rodape-marca span { font-family: var(--f-titulo-2); font-size: 1.15rem; font-weight: 700; }
+.redes-sociais { display: flex; gap: 12px; margin-top: 16px; }
+.redes-sociais a {
+  width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center;
+  background: rgb(255,255,255,.1); color: var(--pergaminho); font-size: 20px; text-decoration: none;
+  border: 2px solid transparent; transition: .2s;
+}
+.redes-sociais a:hover { background: var(--ouro); color: var(--tinta); transform: translateY(-4px) rotate(-6deg); }
+.rodape-copy {
+  padding: 16px 20px;
+  border-top: 1px solid rgb(255 255 255 / 15%);
+  text-align: center;
+  font-size: 0.9rem;
+  color: #a9bcc2;
+}
+
+/* Rodapé logo após a faixa vermelha (home): sem vão, ondas sobre o vermelho */
+.rodape-sobre-chamada { margin-top: 0; }
+.rodape-sobre-chamada .ondas {
+  background-color: var(--vermelho);
+  background-image: repeating-linear-gradient(45deg, rgb(0,0,0,.07) 0 14px, transparent 14px 28px);
+}
+
+/* Selo aberto/fechado */
+/* Selo 'Aberto agora / Fechado': o script.js (seção 6) adiciona .aberto ou .fechado. */
+.status-loja {
+  display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; border-radius: 999px;
+  font-family: var(--f-corpo); letter-spacing: 0; vertical-align: middle;
+  font-weight: 800; font-size: .9rem; background: rgb(0,0,0,.08);
+}
+.status-loja::before { content: ""; width: 11px; height: 11px; border-radius: 50%; background: #888; }
+.status-loja.aberto { background: #d8f0e0; color: #14532d; }
+.status-loja.aberto::before { background: #22a355; box-shadow: 0 0 0 4px rgb(34,163,85,.25); animation: pulsar 1.8s infinite; }
+.status-loja.fechado { background: #f6d9d6; color: #7a1a12; }
+.status-loja.fechado::before { background: #c0392b; }
+@keyframes pulsar { 50% { box-shadow: 0 0 0 8px rgb(34,163,85,0); } }
+
+/* ---------- 4. Página inicial ---------- */
+/* Hero: degradê escuro por cima da imagem do céu (ceu-caribe.svg). */
+.hero {
+  position: relative; overflow: hidden; padding: 70px 0 150px; color: var(--pergaminho);
+  background:
+    linear-gradient(90deg, rgb(10, 13, 14, .92) 0%, rgb(10, 13, 14, .6) 48%, rgb(10, 13, 14, .08) 100%),
+    url("imagens/ceu-caribe.svg") center bottom / cover no-repeat,
+    var(--noite);
+}
+.hero-grade { display: grid; grid-template-columns: 1.1fr .9fr; gap: 40px; align-items: center; }
+.hero .sobretitulo { font-family: var(--f-sub); font-style: italic; font-size: 1.3rem; color: var(--ouro-claro); }
+.hero h1 { color: var(--pergaminho); margin: 8px 0 20px; text-shadow: 3px 3px 0 rgb(0,0,0,.45); }
+.hero h1 em { font-style: normal; color: var(--ouro-claro); display: block; text-shadow: 3px 3px 0 var(--vermelho); }
+.hero p.lead { font-size: 1.2rem; max-width: 520px; margin-bottom: 30px; color: var(--pergaminho); }
+.hero .container { position: relative; z-index: 2; }
+.hero .ondas { height: 170px; z-index: 3; }
+
+.historia-grade { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+/* Foto em estilo polaroid, levemente inclinada; endireita ao passar o mouse. */
+.polaroid {
+  background: var(--branco); padding: 14px 14px 56px; border: 1px solid #d8c9a6;
+  box-shadow: var(--sombra-forte); transform: rotate(-3.5deg); position: relative;
+  transition: transform .3s;
+}
+.polaroid:hover { transform: rotate(0) scale(1.02); }
+.polaroid img { width: 100%; aspect-ratio: 1200 / 896; object-fit: cover; object-position: center; }
+.polaroid figcaption { position: absolute; bottom: 14px; left: 0; right: 0; text-align: center; font-family: var(--f-sub); font-style: italic; font-size: 1.2rem; }
+.polaroid::before {
+  content: ""; position: absolute; top: -16px; left: 50%; width: 110px; height: 32px; transform: translateX(-50%) rotate(3deg);
+  background: rgb(212, 160, 23, .55); border: 1px dashed rgb(43,26,18,.25);
+}
+.historia-texto p { margin-top: 16px; color: var(--tinta-suave); }
+.numeros { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 32px; }
+.numero { text-align: center; padding: 16px 8px; border: 3px dashed var(--vermelho); border-radius: 12px; }
+.numero strong { display: block; font-family: var(--f-sub); font-weight: 800; font-size: 2.4rem; color: var(--vermelho); line-height: 1; }
+.numero span { font-size: .88rem; font-weight: 700; }
+
+/* Grade de 3 colunas; vira 1 coluna no celular (veja a seção 7). */
+.tesouros-grade { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; padding-top: 40px; }
+.tesouro { text-align: center; }
+.tesouro:nth-child(1) { transform: rotate(-1.2deg); }
+.tesouro:nth-child(3) { transform: rotate(1.2deg); }
+.tesouro .icone {
+  width: 92px; height: 92px; margin: -64px auto 16px; border-radius: 50%;
+  background: var(--ouro); border: 3px solid var(--tinta); display: grid; place-items: center;
+  box-shadow: 0 5px 0 var(--tinta);
+}
+.tesouro .icone svg { width: 50px; height: 50px; }
+.tesouro h3 { color: var(--vermelho); margin-bottom: 8px; }
+
+/* Grade de 3 colunas para as pizzas mais pedidas. */
+.destaques-grade { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+.destaque { background: var(--branco); color: var(--tinta); border-radius: var(--raio); overflow: hidden; border: 3px solid var(--ouro); }
+.destaque:hover { transform: translateY(-8px) rotate(.8deg); }
+.destaque .foto { height: 180px; display: grid; place-items: center; background: linear-gradient(135deg, var(--vermelho), #5e1109); position: relative; }
+.destaque .foto svg { width: 130px; height: 130px; }
+.destaque .corpo { padding: 22px; }
+.destaque h3 { color: var(--vermelho); }
+.destaque p { font-size: .95rem; color: var(--tinta-suave); margin: 8px 0 14px; }
+.faixa-ver-mais { text-align: center; margin-top: 44px; }
+
+/* Rota do tesouro */
+/* Passo a passo ligado por uma linha pontilhada (.rota-linha). */
+.rota { position: relative; display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+.rota-linha { position: absolute; top: 46px; left: 10%; right: 10%; height: 4px; border-top: 5px dotted var(--vermelho); opacity: .6; z-index: 0; }
+.passo { position: relative; z-index: 1; text-align: center; padding: 0 10px; }
+.passo .num {
+  width: 92px; height: 92px; margin: 0 auto 18px; display: grid; place-items: center; border-radius: 50%;
+  background: var(--pergaminho); border: 4px solid var(--vermelho); font-family: var(--f-sub); font-weight: 800; font-size: 2.6rem; color: var(--vermelho);
+  box-shadow: 0 0 0 8px var(--pergaminho);
+}
+.passo:last-child .num { background: var(--vermelho); color: var(--ouro-claro); }
+.passo h3 { margin-bottom: 6px; }
+.passo p { color: var(--tinta-suave); font-size: .97rem; }
+
+/* Depoimentos */
+.depoimentos-grade { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+.depoimento { background: var(--pergaminho-2); }
+.depoimento:nth-child(2) { transform: rotate(1.4deg); }
+.depoimento:nth-child(3) { transform: rotate(-1deg); }
+.depoimento .estrelas { color: #7a4f00; letter-spacing: 3px; font-size: 1.2rem; text-shadow: 1px 1px 0 var(--tinta); }
+.depoimento blockquote { font-family: var(--f-sub); font-style: italic; font-size: 1.2rem; margin: 10px 0 16px; line-height: 1.4; }
+.depoimento cite { font-style: normal; font-weight: 800; color: var(--vermelho); }
+.depoimento cite span { display: block; font-weight: 600; font-size: .85rem; color: var(--tinta-suave); }
+
+/* Chamada final */
+.chamada {
+  background-color: var(--vermelho); color: var(--pergaminho); text-align: center; padding: 80px 0; position: relative;
+  background-image: repeating-linear-gradient(45deg, rgb(0,0,0,.07) 0 14px, transparent 14px 28px);
+}
+.chamada h2 { color: var(--ouro-claro); text-shadow: 3px 3px 0 rgb(0,0,0,.3); margin-bottom: 14px; }
+.chamada p { max-width: 560px; margin: 0 auto 30px; }
+.chamada .btn-grupo { justify-content: center; }
+
+/* ---------- 5. Cardápio e serviços ---------- */
+/* Banner do topo das páginas internas: imagem (variável --foto) com véu escuro por cima (--veu-a e --veu-b). */
+.pagina-topo {
+  position: relative; color: var(--branco); text-align: center; padding: 100px 0 130px; overflow: hidden;
+  background: linear-gradient(rgb(15,21,24,var(--veu-a, .72)), rgb(15,21,24,var(--veu-b, .82))), var(--foto, none) var(--foto-pos, center) / cover;
+}
+.pagina-topo h1 { color: var(--ouro-claro); text-shadow: 4px 4px 0 rgb(0,0,0,.4); }
+.pagina-topo p { max-width: 900px; margin: 14px auto 0; font-size: 1.15rem; color: var(--pergaminho); text-wrap: balance; }
+.pagina-topo .ondas { height: 80px; }
+
+.controles { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 24px; margin-bottom: 40px; }
+.grupo-controle { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+.grupo-controle > span { font-family: var(--f-sub); font-weight: 800; font-size: 1.1rem; margin-right: 4px; }
+/* Botões de filtro e tamanho; aria-pressed=true marca o botão selecionado. */
+.chip {
+  font: 800 .95rem var(--f-corpo); padding: 9px 18px; border-radius: 999px; cursor: pointer;
+  background: var(--branco); color: var(--tinta); border: 2px solid var(--tinta); transition: .18s;
+}
+.chip:hover { background: var(--ouro-claro); }
+.chip[aria-pressed="true"] { background: var(--tinta); color: var(--ouro-claro); box-shadow: 0 3px 0 var(--vermelho); }
+
+/* Grade responsiva: cabem quantas colunas houver espaço (mínimo de 290px cada). */
+.cardapio-grade { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 28px; }
+.pizza { display: flex; flex-direction: column; gap: 10px; padding: 24px; animation: surgir .45s ease both; }
+.pizza[hidden] { display: none; }
+@keyframes surgir { from { opacity: 0; transform: scale(.94) translateY(12px); } }
+.pizza-topo { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
+.pizza h3 { color: var(--vermelho); font-size: 1.15rem; }
+.pizza .ingredientes { color: var(--tinta-suave); font-size: .96rem; flex: 1; }
+.pizza .preco { font-family: var(--f-sub); font-weight: 800; font-size: 2rem; color: var(--tinta); line-height: 1; }
+.pizza .preco small { font-family: var(--f-corpo); font-size: .8rem; font-weight: 700; color: var(--tinta-suave); }
+.pizza-rodape { display: flex; justify-content: space-between; align-items: flex-end; gap: 10px; border-top: 2px dashed var(--pergaminho-3); padding-top: 14px; }
+.selos { display: flex; flex-wrap: wrap; gap: 6px; }
+.etiqueta { font-size: .72rem; font-weight: 800; text-transform: uppercase; letter-spacing: .6px; padding: 3px 10px; border-radius: 999px; background: var(--ouro); border: 2px solid var(--tinta); white-space: nowrap; }
+.etiqueta.pic { background: #c23a28; color: #fff; }
+.etiqueta.veg { background: #a8d8a0; }
+.etiqueta.top { background: var(--vermelho); color: var(--ouro-claro); }
+.pizza .pedir { font-size: .95rem; padding: 8px 16px; box-shadow: 0 3px 0 var(--tinta); }
+.sem-resultado { text-align: center; font-family: var(--f-sub); font-size: 1.3rem; padding: 40px; }
+
+.entrega-grade { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+.mapa-ilustrado { background: #d6dbcf; border: 4px solid var(--tinta); border-radius: var(--raio); box-shadow: 8px 8px 0 var(--tinta); overflow: hidden; }
+.mapa-ilustrado svg { width: 100%; display: block; }
+.lista-bairros { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+.lista-bairros li { background: var(--tinta); color: var(--pergaminho); padding: 4px 14px; border-radius: 999px; font-weight: 700; font-size: .9rem; }
+.tempo { display: flex; align-items: center; gap: 16px; margin: 20px 0; }
+.tempo strong { font-family: var(--f-sub); font-weight: 800; font-size: 4rem; color: var(--vermelho); line-height: 1; }
+
+.pacotes-grade { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; align-items: stretch; }
+.pacote { display: flex; flex-direction: column; text-align: center; background: var(--pergaminho); color: var(--tinta); }
+.pacote.destaque-pacote { transform: scale(1.05); background: var(--ouro-claro); z-index: 1; }
+.pacote.destaque-pacote:hover { transform: scale(1.05) translate(-3px, -4px); }
+.pacote .fita { position: absolute; top: -14px; left: 50%; transform: translateX(-50%); background: var(--vermelho); color: var(--ouro-claro); font-weight: 800; font-size: .8rem; letter-spacing: 1px; padding: 4px 18px; border: 2px solid var(--tinta); border-radius: 6px; text-transform: uppercase; }
+.pacote h3 { color: var(--vermelho); }
+.pacote .quem { font-style: italic; font-family: var(--f-sub); margin-bottom: 8px; }
+.pacote .valor { font-family: var(--f-sub); font-weight: 800; font-size: 2.3rem; margin: 8px 0; }
+.pacote .valor small { font-family: var(--f-corpo); font-size: .85rem; }
+.pacote ul { text-align: left; margin: 14px 0 24px; flex: 1; }
+.pacote li { padding: 6px 0 6px 28px; position: relative; border-bottom: 1px dotted rgb(43,26,18,.25); font-size: .96rem; }
+.pacote li::before { font-family: "Segoe UI Symbol", "Noto Sans Symbols 2", sans-serif; font-variant-emoji: text; content: "⚓"; position: absolute; left: 0; color: var(--vermelho); }
+
+.faq { max-width: 780px; margin: 0 auto; display: grid; gap: 14px; }
+/* Perguntas frequentes com <details>: abre e fecha sem precisar de JavaScript. */
+.faq details { background: var(--branco); border: 3px solid var(--tinta); border-radius: 12px; box-shadow: 4px 4px 0 var(--tinta); overflow: hidden; }
+.faq summary { cursor: pointer; list-style: none; padding: 18px 56px 18px 22px; font-family: var(--f-sub); font-weight: 800; font-size: 1.2rem; position: relative; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; position: absolute; right: 20px; top: 50%; transform: translateY(-50%); width: 30px; height: 30px; line-height: 26px; text-align: center; border-radius: 50%; background: var(--ouro); border: 2px solid var(--tinta); font-size: 1.4rem; transition: transform .25s; }
+.faq details[open] summary::after { content: "–"; transform: translateY(-50%) rotate(180deg); }
+.faq details[open] summary { background: var(--pergaminho-2); }
+.faq details p { padding: 16px 22px 20px; color: var(--tinta-suave); }
+
+/* ---------- 6. Contato ---------- */
+.contato-grade { display: grid; grid-template-columns: 1.15fr .85fr; gap: 48px; align-items: start; }
+/* Formulário organizado em grade, com espaço fixo entre os campos. */
+.formulario-contato { display: grid; gap: 20px; }
+.form-linha { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.campo { display: flex; flex-direction: column; gap: 6px; }
+.campo label { font-family: var(--f-sub); font-weight: 800; font-size: 1.1rem; }
+.campo input, .campo select, .campo textarea {
+  font: inherit; padding: 12px 14px; border: 3px solid var(--tinta); border-radius: 10px;
+  background: var(--pergaminho); color: var(--tinta); transition: border-color .2s, box-shadow .2s, background .2s;
+}
+.campo textarea { min-height: 140px; resize: vertical; }
+.campo input:focus, .campo select:focus, .campo textarea:focus { outline: none; background: #fff; border-color: var(--oceano); box-shadow: 0 0 0 4px rgb(44, 90, 94, .25); }
+/* Estado de erro de validação: a classe .erro é aplicada pelo script.js (seção 5). */
+.campo.erro input, .campo.erro select, .campo.erro textarea { border-color: var(--vermelho-vivo); background: #fdeceb; }
+.campo .msg-erro { color: var(--vermelho-vivo); font-weight: 700; font-size: .88rem; }
+.campo .msg-erro:empty { display: none; }
+.formulario-contato button { justify-self: start; }
+.contador { font-size: .8rem; color: var(--tinta-suave); text-align: right; }
+
+.sucesso h3 { color: var(--vermelho); font-size: 1.7rem; margin: 8px 0; }
+
+.info-lista { display: grid; gap: 18px; }
+.info-item { display: flex; gap: 16px; align-items: flex-start; padding: 20px; }
+.info-item .ic { flex: none; width: 50px; height: 50px; border-radius: 12px; background: var(--ouro); border: 3px solid var(--tinta); display: grid; place-items: center; font-size: 1.3rem; }
+.info-item h3 { font-size: 1.05rem; color: var(--vermelho); margin-bottom: 2px; }
+.info-item p, .info-item li { font-size: .96rem; color: var(--tinta-suave); }
+.info-item > div { flex: 1; }
+.horarios li { display: flex; justify-content: space-between; gap: 20px; border-bottom: 1px dotted rgb(43,26,18,.25); padding: 3px 0; }
+.horarios li.hoje { font-weight: 800; color: var(--vermelho); }
+.mapa-tesouro { margin-top: 28px; }
+
+/* ---------- 7. Responsivo ---------- */
+/* TABLET (até 980px): grades passam para 2 colunas e o hero fica centralizado. */
+@media (max-width: 980px) {
+  .hero-grade, .historia-grade, .entrega-grade, .contato-grade { grid-template-columns: 1fr; }
+  .hero-grade { text-align: center; }
+  .hero { background-position: 70% center; }
+  .hero p.lead { margin-inline: auto; }
+  .hero .btn-grupo { justify-content: center; }
+  .hero { padding-bottom: 150px; }
+  .navio { width: 92vw; right: -18vw; opacity: .55; bottom: 120px; }
+  .historia-grade { gap: 44px; }
+  .rodape-grade { grid-template-columns: 1fr 1fr; }
+  .rodape-grade > :first-child { grid-column: 1 / -1; }
+}
+
+/* CELULAR (até 767px): aparece o menu hambúrguer e quase tudo vira 1 coluna. */
+@media (max-width: 767px) {
+  body { font-size: 16px; }
+  .secao { padding: 64px 0; }
+  .btn-menu { display: flex; }
+  .nav-principal {
+    position: absolute; top: calc(var(--altura-header) - 4px); left: 0; right: 0;
+    background: var(--tinta); border-bottom: 4px solid var(--vermelho);
+    max-height: 0; overflow: hidden; visibility: hidden; transition: max-height .35s ease, visibility .35s;
+  }
+  .nav-principal.aberto { max-height: 380px; visibility: visible; }
+  .nav-principal ul { flex-direction: column; align-items: stretch; padding: 12px 20px 22px; gap: 2px; }
+  .nav-principal a { padding: 14px 10px; font-size: 1.3rem; }
+  .nav-principal a::after { left: 10px; right: auto; width: 60px; bottom: 6px; }
+  .nav-principal .nav-cta { margin: 10px 0 0; text-align: center; }
+  .razao-social { font-size: .92rem; }
+  .logo { height: 48px; width: 48px; }
+  .tesouros-grade, .destaques-grade, .depoimentos-grade, .pacotes-grade, .rota { grid-template-columns: 1fr; }
+  .tesouros-grade { gap: 64px; }
+  .tesouro:nth-child(n), .depoimento:nth-child(n) { transform: none; }
+  .rota { gap: 40px; }
+  .rota-linha { inset: 0 auto 0 50%; width: 0; height: auto; border-top: 0; border-left: 5px dotted var(--vermelho); }
+  .pacote.destaque-pacote, .pacote.destaque-pacote:hover { transform: none; }
+  .form-linha { grid-template-columns: 1fr; }
+  .numeros { gap: 8px; }
+  .numero strong { font-size: 2rem; }
+  .controles { flex-direction: column; align-items: flex-start; }
+  .rodape-grade { grid-template-columns: 1fr; text-align: center; }
+  .rodape-marca, .redes-sociais { justify-content: center; }
+  .pagina-topo { padding: 70px 0 110px; }
+  .zap-flutuante { width: 56px; height: 56px; font-size: 28px; }
+}
+
+/* Acessibilidade: para quem pediu menos movimento no sistema, desliga animações e transições. */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .revelar { opacity: 1; translate: none; }
+}
+
+/* ---------- 8. Animações: mar revolto, navio, raio ---------- */
+.hero-cena { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 1; }
+
+/* Navio do hero: balança (rotate + translate) para simular a navegação. */
+.navio {
+  position: absolute; right: 4%; bottom: 96px; width: min(46vw, 640px); height: auto;
+  transform-origin: 50% 88%;
+  animation: navegar 7s ease-in-out infinite;
+  filter: drop-shadow(0 18px 24px rgb(0, 0, 0, .5));
+}
+/* Balanço do navio: inclina e sobe/desce suavemente. */
+@keyframes navegar {
+  0%, 100% { translate: -16px 8px;  rotate: -2.4deg; }
+  50%      { translate: 16px -12px; rotate: 2.4deg; }
+}
+.vela { transform-box: fill-box; transform-origin: 50% 0; animation: vela 3.4s ease-in-out infinite alternate; }
+@keyframes vela { from { transform: skewX(-2.5deg) scaleX(.97); } to { transform: skewX(2.5deg) scaleX(1.04); } }
+.bandeira { transform-box: fill-box; transform-origin: 0 50%; animation: bandeira .7s ease-in-out infinite alternate; }
+@keyframes bandeira { from { transform: skewY(-8deg) scaleX(1); } to { transform: skewY(8deg) scaleX(.82); } }
+
+/* Chuva: linhas diagonais finas que se movem em loop. */
+.chuva {
+  position: absolute; inset: 0; opacity: .8;
+  background: repeating-linear-gradient(100deg, transparent 0 20px, rgb(200, 225, 235, .14) 20px 21px);
+  background-size: 140px 140px;
+  animation: chuva .45s linear infinite;
+}
+@keyframes chuva { to { background-position: -50px 140px; } }
+
+/* Raio: tela clareia por instantes, em intervalos de 9 segundos. */
+.raio {
+  position: absolute; inset: 0; opacity: 0;
+  background: radial-gradient(ellipse at 72% 18%, rgb(255, 255, 255, .95), rgb(190, 215, 255, .35) 38%, transparent 70%);
+  animation: raio 9s infinite;
+}
+@keyframes raio {
+  0%, 89%, 100% { opacity: 0; }
+  90% { opacity: .9; } 91% { opacity: .05; } 92.5% { opacity: .65; } 95% { opacity: 0; }
+}
+
+/* mar revolto: mais alto, mais rápido, com sobe e desce */
+.hero .ondas .o1 { animation: onda 8s linear infinite, marulho 2.9s ease-in-out infinite alternate; }
+.hero .ondas .o2 { animation: onda 5.5s linear infinite reverse, marulho 2.2s ease-in-out infinite alternate-reverse; }
+.hero .ondas .o3 { animation: onda 11s linear infinite; }
+@keyframes marulho { from { translate: 0 8px; } to { translate: 0 -14px; } }
+
+/* ---------- 9. Interações: ondas ao clicar, transição de página, progresso ---------- */
+.btn, .chip, .nav-principal a, .btn-menu { position: relative; overflow: hidden; }
+/* Círculo de água que cresce e some no ponto do clique (script.js, seção 7.1). */
+.ondinha {
+  position: absolute; width: 14px; height: 14px; margin: -7px 0 0 -7px; border-radius: 50%; pointer-events: none;
+  background: radial-gradient(circle, rgb(255,255,255,.7) 0 50%, rgb(255,255,255,.35) 52% 100%);
+  animation: ondinha .75s ease-out forwards;
+}
+@keyframes ondinha { to { transform: scale(24); opacity: 0; } }
+
+/* Cobertura da transição de página: o 'mar' sobe e cobre a tela antes de trocar de página (script.js, seção 7.2). */
+.transicao {
+  position: fixed; inset: 0; z-index: 1000; pointer-events: none;
+  background: linear-gradient(180deg, #2c5a5e, #14292d); transform: translateY(105%);
+}
+.transicao::before {
+  content: ""; position: absolute; left: 0; right: 0; top: -58px; height: 60px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 60' preserveAspectRatio='none'%3E%3Cpath fill='%232c5a5e' d='M0 60V30Q50 0 100 30T200 30T300 30T400 30V60Z'/%3E%3C/svg%3E") repeat-x;
+  background-size: 360px 60px;
+  animation: onda-faixa 1s linear infinite;
+}
+@keyframes onda-faixa { to { background-position-x: -360px; } }
+.transicao.cobrindo { transform: translateY(0); transition: transform .8s cubic-bezier(.65, 0, .35, 1); }
+/*
+  Navio da transição. Fica parado no CENTRO da tela quando termina de entrar.
+  A proa do navio.svg aponta para a ESQUERDA (usado ao navegar para a esquerda);
+  ao navegar para a direita o script usa navio-direita.svg, que é o mesmo desenho espelhado.
+*/
+.transicao img {
+  position: absolute;
+  top: 34%;
+  left: calc(50% - 160px);
+  width: 320px;
+  height: auto;
+  filter: drop-shadow(0 12px 12px rgb(0 0 0 / 40%));
+}
+
+/*
+  Saída: o navio entra pelo lado de onde vem (.ltr = esquerda, .rtl = direita), desacelera até o
+  centro e fica balançando. A página só troca quando ele chega (script.js, seção 7.2).
+*/
+.transicao.cobrindo.ltr img { animation: entrar-ltr 1s cubic-bezier(0.2, 0.7, 0.3, 1) forwards, balanco-navio 1.05s ease-in-out infinite; }
+.transicao.cobrindo.rtl img { animation: entrar-rtl 1s cubic-bezier(0.2, 0.7, 0.3, 1) forwards, balanco-navio 1.05s ease-in-out infinite; }
+@keyframes entrar-ltr { from { transform: translateX(calc(-50vw - 260px)); } to { transform: translateX(0); } }
+@keyframes entrar-rtl { from { transform: translateX(calc(50vw + 260px)); } to { transform: translateX(0); } }
+
+/* Balanço do navio na transição: começa e termina em repouso (sem "pulo" na troca de página). */
+@keyframes balanco-navio {
+  0%, 100% { translate: 0 0; rotate: 0deg; }
+  25% { translate: 10px -8px; rotate: 2deg; }
+  75% { translate: -10px 6px; rotate: -2deg; }
+}
+
+/*
+  Chegada na nova página (a classe .chegando e o atributo data-direcao são colocados pelo entrada.js).
+  O navio continua do CENTRO até sair pelo lado oposto ao de onde veio, e o mar desce depois dele.
+*/
+html.chegando::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  pointer-events: none;
+  background: linear-gradient(180deg, #2c5a5e, #14292d);
+  border-bottom: 8px solid var(--ouro);
+  animation: sair 0.85s cubic-bezier(0.65, 0, 0.35, 1) 0.35s forwards;
+}
+@keyframes sair { to { transform: translateY(-105%); } }
+
+/* O navio da chegada fica exatamente onde o da saída parou (mesmo tamanho e posição). */
+html.chegando::before {
+  content: "";
+  position: fixed;
+  z-index: 1001;
+  pointer-events: none;
+  top: 34%;
+  left: calc(50% - 160px);
+  width: 320px;
+  aspect-ratio: 620 / 520;
+  background: url("imagens/navio.svg") center / contain no-repeat;
+  filter: drop-shadow(0 12px 12px rgb(0 0 0 / 40%));
+  animation: partir-ltr 1.05s cubic-bezier(0.6, 0, 0.9, 0.6) 0.05s forwards, balanco-navio 1.05s ease-in-out infinite;
+}
+/* Navegando para a direita (ltr) usa o desenho espelhado: a proa do navio.svg aponta para a ESQUERDA. */
+html.chegando[data-direcao="ltr"]::before { background-image: url("imagens/navio-direita.svg"); }
+html.chegando[data-direcao="rtl"]::before { animation-name: partir-rtl, balanco-navio; }
+@keyframes partir-ltr { to { transform: translateX(calc(50vw + 260px)); } }
+@keyframes partir-rtl { to { transform: translateX(calc(-50vw - 260px)); } }
+
+/* Barra de progresso de rolagem sobre a borda do cabeçalho; --p (0% a 100%) é definido pelo script.js (seção 7.3). */
+.progresso { position: absolute; left: 0; right: 0; bottom: -4px; height: 4px; pointer-events: none; }
+.progresso .barra { display: block; height: 100%; width: var(--p, 0%); background: var(--ouro); }
+.progresso img { position: absolute; bottom: 4px; left: var(--p, 0%); height: 30px; width: auto; translate: -80% 0; transform-origin: 50% 100%; animation: balancar 3.2s ease-in-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  html.chegando::after, html.chegando::before, .transicao { display: none !important; }
+  .ondinha { display: none; }
+}
+
+/* ---------- 10. O salão (ambiente temático) ---------- */
+/* Seção do salão: fundo escuro com luz âmbar, como uma taverna. */
+.salao {
+  color: var(--pergaminho);
+  background:
+    radial-gradient(ellipse at 15% 0%, rgb(240, 168, 48, .22), transparent 48%),
+    radial-gradient(ellipse at 88% 8%, rgb(240, 168, 48, .16), transparent 42%),
+    linear-gradient(180deg, #1b1310, #120c09);
+}
+.salao h2 { color: var(--ouro-claro); }
+.salao .titulo-secao p, .salao .sobretitulo { color: var(--pergaminho-3); }
+
+
+/* brilho de lampião / fogo que pisca */
+/* Brilho de lampião: círculo de luz que pisca (mix-blend-mode: screen deixa só a luz aparecer). */
+.brilho {
+  position: absolute; width: 120px; height: 120px; translate: -50% -50%; border-radius: 50%; pointer-events: none;
+  background: radial-gradient(circle, rgb(255, 196, 90, .85), rgb(255, 150, 40, .35) 40%, transparent 70%);
+  mix-blend-mode: screen; animation: chama 3.2s ease-in-out infinite;
+}
+.brilho.fogo { width: 150px; height: 150px; background: radial-gradient(circle, rgb(255, 140, 40, .8), rgb(255, 90, 20, .3) 45%, transparent 70%); animation-duration: 1.8s; }
+@keyframes chama {
+  0%, 100% { opacity: .55; scale: 1; }
+  20% { opacity: .95; scale: 1.08; }
+  45% { opacity: .5; scale: .92; }
+  70% { opacity: .85; scale: 1.05; }
+}
+
+.salao-detalhes { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px 14px; margin: 44px 0 0; }
+.salao-detalhes li {
+  padding: 8px 18px 8px 40px; position: relative; border: 2px solid rgb(240, 194, 75, .5); border-radius: 999px;
+  font-weight: 700; font-size: .95rem; color: var(--pergaminho);
+}
+.salao-detalhes li::before { font-family: "Segoe UI Symbol", "Noto Sans Symbols 2", sans-serif; font-variant-emoji: text; content: "⚓"; position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: var(--ouro-claro); }
+.salao .faixa-ver-mais { margin-top: 36px; }
+
+
+/* panorama do salão */
+.panorama { margin: 0; }
+/* Moldura do panorama; a proporção fixa mantém o recorte da foto. */
+.panorama-moldura {
+  position: relative; aspect-ratio: 2000 / 1125; overflow: hidden;
+  border: 4px solid var(--ouro); border-radius: var(--raio); box-shadow: 0 22px 46px rgb(0, 0, 0, .55);
+}
+.pan { position: absolute; left: 0; width: 100%; top: -11.56%; aspect-ratio: 2000 / 1493; transform-origin: 50% 40%; animation: aproximar 28s ease-in-out infinite alternate; }
+.pan img { width: 100%; height: 100%; object-fit: cover; }
+.pan .brilho { width: 9%; height: auto; aspect-ratio: 1; }
+@keyframes aproximar { from { scale: 1; } to { scale: 1.07; } }
+.panorama figcaption { text-align: center; margin-top: 14px; font-family: var(--f-sub); font-style: italic; font-size: 1.15rem; color: var(--pergaminho-3); }
+
+/* bússola: voltar ao topo */
+.topo-wrap { text-align: center; padding: 0 0 22px; }
+/* Bússola de 'voltar ao topo'; a agulha treme no hover e gira no clique (script.js, seção 7.4). */
+.topo-bussola {
+  width: 54px; height: 54px; padding: 0; border: 0; border-radius: 50%; cursor: pointer; background: none;
+  opacity: .75; transition: opacity .25s, transform .25s; filter: drop-shadow(0 4px 6px rgb(0, 0, 0, .45));
+}
+.topo-bussola svg { width: 100%; height: 100%; display: block; }
+.topo-bussola:hover, .topo-bussola:focus-visible { opacity: 1; transform: translateY(-4px); }
+.topo-bussola:hover .agulha { animation: tremer .9s ease-in-out infinite; }
+.agulha { transform-origin: 32px 32px; transform-box: view-box; }
+.topo-bussola.girando .agulha { animation: girar .9s cubic-bezier(.3, .1, .2, 1); }
+@keyframes tremer { 0%, 100% { rotate: -9deg; } 50% { rotate: 9deg; } }
+@keyframes girar { from { rotate: 0deg; } to { rotate: 720deg; } }
+
+/* ---------- 11. Ícones SVG (sprite no início de cada página) ---------- */
+
+/* Ícone de linha: herda a cor e o tamanho do texto ao redor (1em). */
+.icone-svg {
+  width: 1em;
+  height: 1em;
+  fill: none;
+  stroke: currentcolor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vertical-align: -0.125em;
+}
+
+/* Aviso para quem está com o JavaScript desligado. */
+.aviso-noscript { color: var(--vermelho); font-weight: 700; margin-bottom: 16px; }
+
+/* ---------- 12. Formulário de contato: animação da garrafa ---------- */
+
+/* O cartão vira o "palco": recorta (overflow) o que sair dele e serve de referência para posicionar as camadas. */
+.cartao-form { position: relative; overflow: hidden; }
+
+/* Estado final: o resultado fica centralizado no cartão, que mantém a altura que o formulário tinha. */
+.cartao-form.concluido { display: flex; flex-direction: column; justify-content: center; }
+
+/* Folha: tudo o que é do formulário. Na animação ganha aparência de papel e dobra (transform feito pelo script.js). */
+.folha { transform-origin: 50% 50%; }
+.folha.dobrando {
+  background: var(--branco);
+  border-radius: var(--raio);
+  box-shadow: 0 0 0 3px var(--tinta), 6px 6px 0 3px var(--tinta);
+  will-change: transform;
+}
+
+/* Palco: camada sobre o cartão que guarda a garrafa; fica escondido até a animação começar. */
+.palco {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+  visibility: hidden;
+}
+.palco.ativo { visibility: visible; }
+
+/* Caixa da garrafa: 120x260 (proporção do desenho). Todas as camadas se sobrepõem nela. */
+.palco-caixa { position: relative; width: min(140px, 36vw); aspect-ratio: 120 / 260; will-change: transform; }
+.camada { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; overflow: visible; }
+
+/* O pergaminho começa deitado e grande (como a folha enrolada) e depois levanta e entra na garrafa. */
+.camada-pergaminho { transform-origin: 50% 60.4%; transform: translate(0, -31px) rotate(90deg) scale(1.6); }
+
+/* Rolha: começa acima do gargalo e desce para vedar. */
+.camada-rolha { transform: translateY(-80px); }
+
+/* Resultado do envio: escondido até a animação terminar. */
+.sucesso { display: none; text-align: center; padding: 30px 10px; }
+.sucesso.preparando { display: block; visibility: hidden; } /* ocupa espaço para medirmos onde o ícone vai ficar */
+.sucesso.ativo { display: block; visibility: visible; }
+.sucesso.ativo > :not(.garrafa-selo) { animation: surgir .6s ease both; }
+.sucesso:focus-visible { outline-offset: 6px; }
+
+/* Ícone da garrafa selada: pequena flutuação suave (começa em repouso, sem "pulo"). */
+.garrafa-selo { display: block; height: 120px; width: auto; margin: 0 auto 8px; overflow: visible; animation: flutuar-leve 4s ease-in-out infinite; }
+@keyframes flutuar-leve {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-4px) rotate(3deg); }
+}
+
+/* ---------- 13. Bússola: chama atenção quando aparece na tela ---------- */
+
+/*
+  O script.js (seção 7.4) adiciona a classe .chamar toda vez que a bússola entra na tela:
+  o botão dá um pulinho com balanço que vai diminuindo e a agulha oscila. Dura ~1,3 s.
+*/
+.topo-bussola.chamar { animation: chamar-botao 1.3s ease-in-out; }
+.topo-bussola.chamar .agulha { animation: chamar-agulha 1.3s ease-in-out; }
+
+@keyframes chamar-botao {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  12% { transform: translateY(-12px) rotate(-9deg); }
+  26% { transform: translateY(0) rotate(8deg); }
+  40% { transform: translateY(-7px) rotate(-6deg); }
+  54% { transform: translateY(0) rotate(4deg); }
+  68% { transform: translateY(-3px) rotate(-2deg); }
+  82% { transform: translateY(0) rotate(1deg); }
+}
+
+@keyframes chamar-agulha {
+  0%, 100% { rotate: 0deg; }
+  20% { rotate: -28deg; }
+  40% { rotate: 22deg; }
+  60% { rotate: -12deg; }
+  80% { rotate: 6deg; }
+}
+
+/* ---------- 14. Página 404 ---------- */
+
+/* Página de erro: conteúdo centralizado, com o "404" gigante em dourado. */
+.erro-404 { text-align: center; padding-bottom: 40px; }
+.erro-codigo {
+  font-family: var(--f-titulo);
+  font-size: clamp(5rem, 22vw, 11rem);
+  line-height: 1;
+  color: var(--ouro);
+  text-shadow: 4px 4px 0 var(--vermelho);
+}
+.erro-texto { max-width: 520px; margin: 12px auto 28px; color: var(--tinta-suave); }
+.erro-404 .btn-grupo { justify-content: center; }
+
+/* ---------- 15. Acessibilidade extra ---------- */
+
+/* Texto de exemplo (placeholder) com contraste mínimo de 4,5:1 sobre o fundo creme dos campos. */
+::placeholder { color: #6f5e4f; opacity: 1; }
+
+/* Campos do formulário: o realce de foco usa o mesmo anel duplo dos demais elementos. */
+.campo input:focus-visible,
+.campo select:focus-visible,
+.campo textarea:focus-visible { outline: 3px solid var(--tinta); outline-offset: 2px; }
+
+/*
+  Botão "Pausar animações" (cabeçalho): ícone redondo e discreto. O texto existe só para leitores
+  de tela (span .sr-only) e no balão ao passar o mouse (title). O ícone (pausar ou tocar) é
+  desenhado em CSS e muda sozinho conforme o estado.
+*/
+.btn-pausar {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  margin-left: 14px;
+  padding: 0;
+  background: none;
+  color: var(--pergaminho);
+  border: 1px solid rgb(255 255 255 / 40%);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+.btn-pausar::before {
+  content: "";
+  width: 12px;
+  height: 12px;
+  background: linear-gradient(90deg, currentcolor 0 38%, transparent 38% 62%, currentcolor 62%); /* ícone de pausar */
+}
+html[data-animacoes="pausadas"] .btn-pausar::before {
+  background: currentcolor;
+  clip-path: polygon(15% 0, 100% 50%, 15% 100%); /* ícone de tocar (triângulo) */
+}
+.btn-pausar:hover { background: var(--ouro); color: var(--tinta); border-color: var(--ouro); }
+
+/*
+  Animações pausadas pela pessoa (botão do rodapé, atributo data-animacoes no <html>):
+  mesmas regras de "reduzir movimento" do sistema. Satisfaz a WCAG 2.2.2 (pausar movimento
+  que dura mais de 5 segundos).
+*/
+html[data-animacoes="pausadas"] { scroll-behavior: auto; }
+html[data-animacoes="pausadas"] *,
+html[data-animacoes="pausadas"] *::before,
+html[data-animacoes="pausadas"] *::after { animation: none !important; transition: none !important; }
+html[data-animacoes="pausadas"] .revelar { opacity: 1; translate: none; }
+html[data-animacoes="pausadas"] .transicao { display: none !important; }
+
+/* ---------- 16. Garrafa ao mar: o fundo do mar da animação de envio ---------- */
+
+/* Camada do mar dentro do cartão (decorativa). Fica escondida até a animação começar. */
+.mar { position: absolute; inset: 0; overflow: hidden; pointer-events: none; visibility: hidden; }
+.mar.ativo { visibility: visible; }
+
+/* Corpo da água: um bloco mais alto que o cartão (130%) com degradê do raso (claro) ao fundo (escuro). O script.js o faz subir. */
+.mar-corpo {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 130%;
+  transform: translateY(100%); /* começa escondido abaixo do cartão */
+  background: linear-gradient(180deg, #4a8f95 0%, #2c6068 22%, #17414a 55%, #0b2428 100%);
+  will-change: transform;
+}
+
+/* Ondas na superfície: dois desenhos que deslizam em velocidades diferentes (reaproveita @keyframes onda). */
+.mar-onda {
+  position: absolute;
+  top: -41px;
+  left: 0;
+  width: 200%;
+  height: 60px;
+  fill: #4a8f95;
+  mask-image: linear-gradient(180deg, #000 55%, transparent); /* a base da onda some aos poucos: sem emenda reta */
+  animation: onda 8s linear infinite;
+}
+.mar-onda-2 { top: -34px; fill: #2c6068; opacity: 0.8; animation-duration: 5.5s; animation-direction: reverse; }
+
+/* Raios de luz que atravessam a água: faixas claras que somem para baixo e balançam devagar. */
+.mar-raios {
+  position: absolute;
+  inset: 0 -10% 40%;
+  background: repeating-linear-gradient(105deg, transparent 0 46px, rgb(255 255 255 / 10%) 46px 84px);
+  mask-image: linear-gradient(180deg, #000, transparent);
+  opacity: 0;
+  animation: raios-balanco 7s ease-in-out infinite;
+}
+@keyframes raios-balanco {
+  0%, 100% { translate: -3% 0; }
+  50% { translate: 3% 0; }
+}
+
+/* Bolhas (criadas pelo script.js) e anéis de ondulação onde a garrafa toca a água. */
+.mar-bolhas { position: absolute; inset: 0; }
+.bolha { position: absolute; bottom: -16px; border: 2px solid rgb(255 255 255 / 60%); border-radius: 50%; background: rgb(255 255 255 / 12%); }
+.anel {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 140px;
+  height: 34px;
+  margin: -17px 0 0 -70px;
+  border: 3px solid rgb(255 255 255 / 75%);
+  border-radius: 50%;
+  opacity: 0;
+}
+
+/* O resultado fica acima do mar e do palco. */
+.sucesso { position: relative; z-index: 2; }
+
+/*
+  Estado final (classe .mar-final, colocada pelo script.js): o cartão continua no fundo do mar,
+  com texto claro. Os valores iguais aos do fim da animação evitam "pulos" ao terminar.
+*/
+.cartao-form.mar-final .mar { visibility: visible; }
+.cartao-form.mar-final .mar-corpo { transform: translateY(-10%); }
+.cartao-form.mar-final .mar-raios { opacity: 0.55; }
+.cartao-form.mar-final .sucesso h3,
+.cartao-form.mar-final .sucesso strong { color: var(--ouro-claro); }
+.cartao-form.mar-final .sucesso p { color: var(--pergaminho); }
+
+/* Ao clicar em "Enviar outra", o mar some com um fade curto. */
+.cartao-form.mar-saindo .mar { opacity: 0; transition: opacity 0.4s ease; }
+
+/* ---------- 17. Areia no fundo do mar ---------- */
+
+/* A areia fica no pé do cartão e sobe (animação do script.js) quando a garrafa mergulha. */
+.mar-areia { position: absolute; right: 0; bottom: 0; left: 0; height: 104px; transform: translateY(100%); }
+.mar-areia svg { display: block; width: 100%; height: 100%; overflow: visible; }
+
+/* Algas balançando devagar. */
+.alga { transform-box: view-box; animation: algas 3.6s ease-in-out infinite alternate; }
+.alga-2 { animation-duration: 4.4s; animation-delay: -1.2s; }
+@keyframes algas {
+  from { rotate: -5deg; }
+  to { rotate: 5deg; }
+}
+
+/* Estado final: a areia já está no fundo. */
+.cartao-form.mar-final .mar-areia { transform: none; }
+
+/* ---------- 18. Preços por tamanho nos destaques da home ---------- */
+
+/* Três caixinhas lado a lado (Pequena, Média e Grande). Os valores vêm de servicos.html. */
+.precos-tamanhos { display: flex; gap: 8px; margin-top: 4px; }
+.precos-tamanhos li {
+  flex: 1;
+  padding: 6px 4px;
+  text-align: center;
+  background: var(--pergaminho);
+  border: 2px solid var(--pergaminho-3);
+  border-radius: 10px;
+}
+.precos-tamanhos span {
+  display: block;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--tinta-suave);
+}
+.precos-tamanhos strong { font-family: var(--f-sub); font-size: 1.05rem; font-weight: 800; white-space: nowrap; }
+
+/* Os três cartões têm a mesma altura e as caixinhas de preço ficam alinhadas pela base. */
+.destaque { display: flex; flex-direction: column; }
+.destaque .corpo { display: flex; flex: 1; flex-direction: column; }
+.destaque .precos-tamanhos { margin-top: auto; }
+
+/* ---------- 19. Ícone de pausar no cabeçalho ---------- */
+
+/* Mantém o menu encostado à direita; o ícone de pausar vem logo depois dele. */
+.nav-principal { margin-left: auto; }
+
+/* Celular: o ícone fica ao lado do hambúrguer (antes dele) e o menu aberto continua cobrindo a largura. */
+@media (max-width: 767px) {
+  .btn-pausar { order: 2; margin: 0 10px 0 auto; }
+  .btn-menu { order: 3; }
+}
+
+/* ---------- 20. Ícone de pausar: mexidinha para chamar a atenção ---------- */
+
+/*
+  Um único balançar de 1 segundo ao carregar a página (com 1,4 s de atraso, para esperar a
+  transição do navio terminar), para a pessoa perceber que o botão existe. Fica desligada com
+  "reduzir movimento" e quando as animações estão pausadas (regras globais acima).
+*/
+.btn-pausar { animation: chamar-pausa 1s ease-in-out 1.4s 1; }
+
+@keyframes chamar-pausa {
+  0%, 100% { transform: rotate(0deg); }
+  15% { transform: rotate(-16deg); }
+  32% { transform: rotate(14deg); }
+  48% { transform: rotate(-10deg); }
+  64% { transform: rotate(6deg); }
+  80% { transform: rotate(-3deg); }
+}

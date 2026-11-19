@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 600" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="noite" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0c1114"/>
+      <stop offset=".55" stop-color="#1d2a2f"/>
+      <stop offset="1" stop-color="#34585b"/>
+    </linearGradient>
+    <linearGradient id="agua" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#3b6f70"/>
+      <stop offset=".6" stop-color="#1f4549"/>
+      <stop offset="1" stop-color="#0e1b1d"/>
+    </linearGradient>
+    <radialGradient id="lua" cx=".5" cy=".5" r=".5">
+      <stop offset="0" stop-color="#fffbe6" stop-opacity=".95"/>
+      <stop offset=".4" stop-color="#cfe8f0" stop-opacity=".35"/>
+      <stop offset="1" stop-color="#cfe8f0" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1600" height="600" fill="url(#noite)"/>
+  <circle cx="300" cy="170" r="230" fill="url(#lua)"/>
+  <circle cx="300" cy="170" r="66" fill="#fffbe6"/>
+  <circle cx="282" cy="156" r="12" fill="#e6e0c8" opacity=".7"/>
+  <circle cx="324" cy="190" r="16" fill="#e6e0c8" opacity=".6"/>
+
+  <g fill="#fff" opacity=".8">
+    <circle cx="640" cy="80" r="2.5"/><circle cx="820" cy="130" r="2"/><circle cx="980" cy="60" r="3"/>
+    <circle cx="1180" cy="110" r="2"/><circle cx="1420" cy="70" r="2.5"/><circle cx="520" cy="190" r="2"/>
+    <circle cx="1500" cy="190" r="2"/><circle cx="100" cy="70" r="2"/><circle cx="700" cy="230" r="1.8"/>
+  </g>
+
+  <!-- mar -->
+  <rect y="360" width="1600" height="240" fill="url(#agua)"/>
+  <path d="M120 372h360M180 392h240M230 412h140" stroke="#fffbe6" stroke-width="4" stroke-linecap="round" opacity=".35"/>
+
+  <!-- garrafa com mensagem -->
+  <g transform="translate(1448 380) rotate(-24)">
+    <!-- rolha -->
+    <rect x="-27" y="-200" width="54" height="38" rx="8" fill="#b9823a" stroke="#2b1a12" stroke-width="5"/>
+    <path d="M-16 -190v18M0 -192v22M16 -190v18" stroke="#8a5d22" stroke-width="3" stroke-linecap="round"/>
+    <!-- vidro -->
+    <path d="M-23 -164v66C-23 -76 -72 -66 -72 -14V122c0 34 22 50 44 50h56c22 0 44-16 44-50V-14C72-66 23-76 23-98v-66z" fill="#a8e6ea" fill-opacity=".22" stroke="#cdf6f7" stroke-width="6" stroke-linejoin="round"/>
+    <!-- pergaminho -->
+    <g>
+      <rect x="-30" y="-40" width="60" height="160" rx="12" fill="#f3e9d2" stroke="#2b1a12" stroke-width="4"/>
+      <ellipse cx="0" cy="-40" rx="30" ry="9" fill="#ead9b4" stroke="#2b1a12" stroke-width="4"/>
+      <ellipse cx="0" cy="120" rx="30" ry="9" fill="#ead9b4" stroke="#2b1a12" stroke-width="4"/>
+      <path d="M-16 -8h32M-16 12h32M-16 32h24M-16 76h32M-16 96h20" stroke="#8c6b45" stroke-width="3" stroke-linecap="round" opacity=".7"/>
+      <rect x="-34" y="44" width="68" height="14" rx="4" fill="#8c1c13" stroke="#2b1a12" stroke-width="3"/>
+    </g>
+    <!-- brilho -->
+    <path d="M-56 -4C-58 40-58 90-52 130" stroke="#fff" stroke-width="7" stroke-linecap="round" fill="none" opacity=".45"/>
+  </g>
+
+  <!-- ondas na frente da garrafa -->
+  <path d="M0 440Q100 400 200 440T400 440T600 440T800 440T1000 440T1200 440T1400 440T1600 440V600H0Z" fill="#2c5a5e" opacity=".55"/>
+  <path d="M0 470Q100 430 200 470T400 470T600 470T800 470T1000 470T1200 470T1400 470T1600 470V600H0Z" fill="#1f4549" opacity=".8"/>
+  <path d="M0 505Q100 470 200 505T400 505T600 505T800 505T1000 505T1200 505T1400 505T1600 505V600H0Z" fill="#14292d"/>
+  <g fill="none" stroke="#e8fbfb" stroke-width="4" stroke-linecap="round" opacity=".55">
+    <path d="M1340 436q20-14 40 0M1500 440q20-14 40 0M1410 426q14-10 28 0"/>
+  </g>
+</svg>
