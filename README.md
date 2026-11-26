@@ -4,6 +4,10 @@ Site pessoal com meus projetos, stacks, experiência e contato.
 
 Feito com React 19, Vite, CSS puro, react-router, GSAP (ScrollTrigger) e as fontes Geist.
 
+# Publicação no GitHub Pages
+
+- Link do site publicado: https://jpedroferreira07.github.io/portfolio/
+
 ## Animações
 
 - Carrossel de projetos: no computador a seção fica presa na tela e os cards passam de lado em 3D (coverflow) enquanto você rola; no celular os cards ficam empilhados.
@@ -28,13 +32,7 @@ npm run build
 npm run preview
 ```
 
-## Publicar
-
-O workflow `.github/workflows/deploy.yml` publica o site no GitHub Pages a cada push na branch `main`. No repositório, ative em **Settings > Pages > Source: GitHub Actions**.
-
-O site usa `HashRouter` e `base: './'`, então funciona em qualquer endereço do GitHub Pages (por exemplo `usuario.github.io` ou `usuario.github.io/portfolio`).
-
-## Onde mexer
+## Como fazer mudanças
 
 | Para mudar | Arquivo |
 | --- | --- |
@@ -50,19 +48,9 @@ Todo texto existe em português e em inglês. Ao adicionar um projeto, preencha 
 
 ## Adicionar um projeto
 
-1. Coloque a imagem em `public/work/` (1440×900 fica bom).
+1. Coloque a imagem em `public/work/`.
 2. Copie um dos objetos de `src/data/projects.js` e ajuste os campos.
 3. Se o projeto ainda não estiver publicado, coloque os arquivos dele em `public/demos/<slug>/` e preencha `demo`.
-
-## Quando um projeto ganhar repositório e GitHub Pages
-
-Em `src/data/projects.js`, no projeto:
-
-- `live`: o link do GitHub Pages. O botão passa a dizer "Abrir site".
-- `status: 'live'`: a etiqueta muda de "Demo" para "No ar".
-- `repo`: o link do repositório. O botão "Código" aparece.
-
-Depois disso, a pasta `public/demos/<slug>/` pode ser apagada.
 
 ## Estrutura
 
