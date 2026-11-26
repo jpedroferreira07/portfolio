@@ -4,7 +4,7 @@ Site pessoal com meus projetos, stacks, experiência e contato.
 
 Feito com React 19, Vite, CSS puro, react-router, GSAP (ScrollTrigger) e as fontes Geist.
 
-# Publicação no GitHub Pages
+## Publicação
 
 - Link do site publicado: https://jpedroferreira07.github.io/portfolio/
 
