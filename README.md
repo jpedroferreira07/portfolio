@@ -1,1 +1,88 @@
-# portfolio
+# Portfólio de João Pedro Ferreira
+
+Site pessoal com meus projetos, stacks, experiência e contato. Fundo azul escuro, tipografia leve, em português e inglês.
+
+Feito com React 19, Vite, CSS puro (sem Tailwind e sem variáveis CSS), react-router, GSAP (ScrollTrigger) e as fontes Geist.
+
+## Animações
+
+- Carrossel de projetos: no computador a seção fica presa na tela e os cards passam de lado em 3D (coverflow) enquanto você rola; no celular os cards ficam empilhados.
+- Topo com uma pilha de telas dos projetos que se alterna sozinha e uma faixa infinita de tecnologias (as duas pausam quando saem da tela).
+- Barra de progresso de leitura no topo e botão de voltar ao topo com anel de progresso.
+- Fundo estático (gradientes e pontinhos) em uma única camada, sem custo ao rolar.
+- Botão de pausar no menu: desliga as animações e a escolha fica salva. Quem usa "reduzir movimento" no sistema já vê o site sem animações.
+
+## Rodar no computador
+
+```bash
+npm install
+npm run dev
+```
+
+O site abre em http://localhost:5173.
+
+Para testar a versão de produção:
+
+```bash
+npm run build
+npm run preview
+```
+
+## Publicar
+
+O workflow `.github/workflows/deploy.yml` publica o site no GitHub Pages a cada push na branch `main`. No repositório, ative em **Settings > Pages > Source: GitHub Actions**.
+
+O site usa `HashRouter` e `base: './'`, então funciona em qualquer endereço do GitHub Pages (por exemplo `usuario.github.io` ou `usuario.github.io/portfolio`).
+
+## Onde mexer
+
+| Para mudar | Arquivo |
+| --- | --- |
+| Projetos (textos, imagens, links, ordem) | `src/data/projects.js` |
+| Contatos, experiência, formação e stacks | `src/data/profile.js` |
+| Textos da interface em PT e EN | `src/i18n/strings.js` |
+| Cores, fontes e animações | `src/index.css` |
+| Imagens dos projetos | `public/work/` |
+| Currículo em PDF (botões "CV" e "Baixar currículo") | `public/cv/curriculo-joao-pedro-ferreira.pdf` |
+| Demos dos projetos | `public/demos/<slug>/` |
+
+Todo texto existe em português e em inglês. Ao adicionar um projeto, preencha os dois idiomas.
+
+## Adicionar um projeto
+
+1. Coloque a imagem em `public/work/` (1440×900 fica bom).
+2. Copie um dos objetos de `src/data/projects.js` e ajuste os campos.
+3. Se o projeto ainda não estiver publicado, coloque os arquivos dele em `public/demos/<slug>/` e preencha `demo`.
+
+## Quando um projeto ganhar repositório e GitHub Pages
+
+Em `src/data/projects.js`, no projeto:
+
+- `live`: o link do GitHub Pages. O botão passa a dizer "Abrir site".
+- `status: 'live'`: a etiqueta muda de "Demo" para "No ar".
+- `repo`: o link do repositório. O botão "Código" aparece.
+
+Depois disso, a pasta `public/demos/<slug>/` pode ser apagada.
+
+## Estrutura
+
+```
+src/
+  main.jsx  App.jsx  index.css
+  layout/     Layout, Nav, Footer
+  pages/      Home, ProjectPage, NotFound
+  sections/   Hero, Featured, Experience, Contact
+  components/ ProjectCard, ProjectDeck, HoloFrame, SectionTitle, Marquee,
+              ScrollProgress, BackToTop, StatusTag, Reveal
+  hooks/      useMotion, useScrollProgress, useReducedMotion,
+              usePageMeta, useScrollSpy, useSectionNav
+  motion/     gsap.js (GSAP + ScrollTrigger), scroll.js (rolagem até as seções)
+  data/       profile.js, projects.js
+  i18n/       lang.js, strings.js
+public/
+  favicon.svg  work/  demos/  cv/   (cv/ guarda o currículo em PDF)
+```
+
+## Créditos
+
+Desenvolvido por João Pedro Ferreira, com apoio do Claude (Anthropic) no código e na revisão.
