@@ -1,8 +1,8 @@
 # Portfólio de João Pedro Ferreira
 
-Site pessoal com meus projetos, stacks, experiência e contato. Fundo azul escuro, tipografia leve, em português e inglês.
+Site pessoal com meus projetos, stacks, experiência e contato.
 
-Feito com React 19, Vite, CSS puro (sem Tailwind e sem variáveis CSS), react-router, GSAP (ScrollTrigger) e as fontes Geist.
+Feito com React 19, Vite, CSS puro, react-router, GSAP (ScrollTrigger) e as fontes Geist.
 
 ## Animações
 
@@ -85,4 +85,4 @@ public/
 
 ## Créditos
 
-Desenvolvido por João Pedro Ferreira, com apoio do Claude (Anthropic) no código e na revisão.
+Desenvolvido por João Pedro Ferreira, com apoio do Claude no código e na revisão.
