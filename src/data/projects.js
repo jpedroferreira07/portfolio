@@ -59,7 +59,7 @@ export const projects = [
     tags: ['HTML5', 'CSS3', 'JavaScript', 'PokeAPI', 'GSAP', 'Web Audio'],
     pt: {
       title: 'Mundo dos Pokémons',
-      area: 'Web · Faculdade',
+      area: 'Web · Pessoal',
       summary:
         'Site com todos os Pokémons, feito sobre a PokeAPI: galeria com busca e filtros, ficha de cada Pokémon, arena de batalha por turnos e favoritos.',
       context: 'Começou como trabalho da AP2 de Desenvolvimento Web no Ibmec e depois foi ampliado.',
@@ -74,7 +74,7 @@ export const projects = [
     },
     en: {
       title: 'Mundo dos Pokémons',
-      area: 'Web · University',
+      area: 'Web · Personal',
       summary:
         'A site with every Pokémon, built on the PokeAPI: a gallery with search and filters, a profile for each Pokémon, a turn-based battle arena and favorites.',
       context: 'It started as the AP2 assignment for Web Development at Ibmec and was expanded afterwards.',
@@ -97,7 +97,7 @@ export const projects = [
     tags: ['HTML5', 'CSS3', 'JavaScript', 'SVG'],
     pt: {
       title: 'Pizzaria dos Sete Mares',
-      area: 'Web · Faculdade',
+      area: 'Web · Pessoal',
       summary:
         'Site de uma pizzaria pirata fictícia, com cardápio interativo, pedido pelo WhatsApp e um galeão animado atravessando a tempestade.',
       context: 'Trabalho da AP1 de Desenvolvimento Web no Ibmec, depois redesenhado.',
@@ -111,7 +111,7 @@ export const projects = [
     },
     en: {
       title: 'Pizzaria dos Sete Mares',
-      area: 'Web · University',
+      area: 'Web · Personal',
       summary:
         'Website for a fictional pirate pizzeria, with an interactive menu, WhatsApp ordering and an animated galleon sailing through a storm.',
       context: 'AP1 assignment for Web Development at Ibmec, later redesigned.',
@@ -207,7 +207,7 @@ export const projects = [
     tags: ['Python 3', 'Git', 'GitHub', 'VS Code'],
     pt: {
       title: 'Conversor de Temperatura',
-      area: 'Python · Faculdade',
+      area: 'Python · Pessoal',
       summary:
         'Meu primeiro projeto pessoal na faculdade: um programa em Python que converte temperaturas entre Celsius, Fahrenheit e Kelvin.',
       context: 'Feito para aprender lógica de programação e Python. As duas versões ficaram no repositório para mostrar a evolução.',
@@ -220,7 +220,7 @@ export const projects = [
     },
     en: {
       title: 'Temperature Converter',
-      area: 'Python · University',
+      area: 'Python · Personal',
       summary:
         'My first personal project at university: a Python program that converts temperatures between Celsius, Fahrenheit and Kelvin.',
       context: 'Built to learn programming logic and Python. Both versions are kept in the repository to show the progress.',
