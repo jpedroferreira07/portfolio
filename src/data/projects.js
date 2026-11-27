@@ -90,7 +90,7 @@ export const projects = [
     live: 'https://jpedroferreira07.github.io/foi-isso-que-eu-pedi/',
     repo: 'https://github.com/jpedroferreira07/foi-isso-que-eu-pedi',
     image: 'work/foi-isso-que-eu-pedi.jpg',
-    tags: ['Jogo de tabuleiro', 'HTML', 'JavaScript', 'ScrumBan', 'Offline'],
+    tags: ['HTML', 'JavaScript', 'ScrumBan'],
     pt: {
       title: 'Foi isso que eu pedi?',
       area: 'Jogo + Web · Faculdade',
@@ -164,7 +164,7 @@ export const projects = [
     live: '',
     repo: 'https://github.com/jpedroferreira07/conversor-temperatura',
     image: 'work/conversor-temperatura.jpg',
-    tags: ['Python', 'Lógica de programação', 'Git'],
+    tags: ['Python 3', 'Git', 'GitHub', 'VS Code'],
     pt: {
       title: 'Conversor de Temperatura',
       area: 'Python · Faculdade',
