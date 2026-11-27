@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { ArrowUpRight } from 'lucide-react'
 import { localePath, useLang } from '../i18n/lang.js'
-import { asset, projectUrl } from '../data/projects.js'
+import { asset, projectLabel, projectUrl } from '../data/projects.js'
 import StatusTag from './StatusTag.jsx'
 import HoloFrame from './HoloFrame.jsx'
 
@@ -45,7 +45,7 @@ export default function ProjectCard({ project, index, total }) {
           <StatusTag status={project.status} />
           <div className="card-actions">
             <a className="link-arrow" href={projectUrl(project)} target="_blank" rel="noopener noreferrer">
-              {project.live ? t.projects.openLive : t.projects.open}
+              {projectLabel(project, t)}
               <ArrowUpRight size={16} aria-hidden="true" />
               <span className="sr-only">
                 : {tx.title} {t.contact.newTab}

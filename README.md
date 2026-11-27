@@ -42,7 +42,6 @@ npm run preview
 | Cores, fontes e animações | `src/index.css` |
 | Imagens dos projetos | `public/work/` |
 | Currículo em PDF (botões "CV" e "Baixar currículo") | `public/cv/curriculo-joao-pedro-ferreira.pdf` |
-| Demos dos projetos | `public/demos/<slug>/` |
 
 Todo texto existe em português e em inglês. Ao adicionar um projeto, preencha os dois idiomas.
 
@@ -50,7 +49,7 @@ Todo texto existe em português e em inglês. Ao adicionar um projeto, preencha 
 
 1. Coloque a imagem em `public/work/`.
 2. Copie um dos objetos de `src/data/projects.js` e ajuste os campos.
-3. Se o projeto ainda não estiver publicado, coloque os arquivos dele em `public/demos/<slug>/` e preencha `demo`.
+3. Preencha `live` (link do GitHub Pages) e `repo` (link do repositório). Se o projeto não tiver site, deixe `live` vazio e use `status: 'code'`: o botão principal passa a abrir o repositório.
 
 ## Estrutura
 
@@ -68,7 +67,7 @@ src/
   data/       profile.js, projects.js
   i18n/       lang.js, strings.js
 public/
-  favicon.svg  work/  demos/  cv/   (cv/ guarda o currículo em PDF)
+  favicon.svg  work/  cv/   (cv/ guarda o currículo em PDF)
 ```
 
 ## Créditos

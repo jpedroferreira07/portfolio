@@ -2,7 +2,7 @@ import { useLayoutEffect, useRef } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { ArrowLeft, ArrowUpRight } from 'lucide-react'
 import { localePath, useLang } from '../i18n/lang.js'
-import { asset, projects, projectUrl } from '../data/projects.js'
+import { asset, projectLabel, projects, projectUrl } from '../data/projects.js'
 import { usePageMeta } from '../hooks/usePageMeta.js'
 import { useMotion } from '../hooks/useMotion.jsx'
 import { gsap } from '../motion/gsap.js'
@@ -60,11 +60,11 @@ export default function ProjectPage() {
           <p className="proj-sum">{tx.summary}</p>
           <div className="proj-actions">
             <a className="btn" href={projectUrl(project)} target="_blank" rel="noopener noreferrer">
-              {project.live ? t.projects.openLive : t.projects.open}
+              {projectLabel(project, t)}
               <ArrowUpRight size={16} aria-hidden="true" />
               <span className="sr-only">{t.contact.newTab}</span>
             </a>
-            {project.repo && (
+            {project.repo && project.repo !== projectUrl(project) && (
               <a className="btn ghost" href={project.repo} target="_blank" rel="noopener noreferrer">
                 {t.projects.code}
                 <span className="sr-only">{t.contact.newTab}</span>
