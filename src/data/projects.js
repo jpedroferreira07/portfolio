@@ -11,6 +11,46 @@
 
 export const projects = [
   {
+    slug: 'intelligent-team',
+    status: 'code',
+    live: '',
+    repo: 'https://github.com/jpedroferreira07/EmpresaB-Inovacoes-Produtos',
+    image: 'work/intelligent-team.jpg',
+    tags: ['React', 'Vite', 'React Router', 'Django', 'Django REST Framework', 'Git'],
+    pt: {
+      title: 'Intelligent Team',
+      area: 'Front-end + API · Empresa júnior',
+      summary:
+        'Protótipo de um copiloto de operações de campo: recomenda equipes habilitadas para cada ordem de serviço e apoia o técnico durante o serviço, com três perfis (gestor, técnico e administrador).',
+      context:
+        'Projeto final do Processo Seletivo 26.2 da IbmecJr, em parceria com a Visagio, feito em grupo e apresentado em 29/10/2026. Fiquei com a conexão entre o front-end e a API, o painel administrativo e a integração das três partes do front-end.',
+      highlights: [
+        'Conexão do front-end em React com a API em Django e Django REST Framework: chamadas com token e volta automática ao login quando a sessão expira.',
+        'Login com "Entrar como…" para gestor, técnico e administrador, com rotas protegidas por perfil usando React Router.',
+        'Painel de operações com contadores, ordens de serviço, alertas e profissionais disponíveis, todos com dados da API.',
+        'Painel administrativo com documentos, usuários, auditoria e envio de documento.',
+        'Integração das três partes do front-end (gestor, técnico e administrador) em um só site, com o app do técnico funcionando também sem internet.',
+        'Fluxo "a IA sugere, a pessoa decide": o gestor revisa a equipe recomendada e a aprovação chama a API. A leitura da ordem é simulada no protótipo.',
+      ],
+    },
+    en: {
+      title: 'Intelligent Team',
+      area: 'Front-end + API · Junior company',
+      summary:
+        'A prototype of a field operations copilot: it recommends qualified teams for each service order and supports the technician during the job, with three profiles (manager, technician and administrator).',
+      context:
+        'Final project of the IbmecJr 26.2 selection process, in partnership with Visagio, built as a group and presented on Oct 29, 2026. I was in charge of connecting the front end to the API, the admin panel and integrating the three parts of the front end.',
+      highlights: [
+        'Connected the React front end to the Django and Django REST Framework API: token-based calls and an automatic return to login when the session expires.',
+        'Login with "Sign in as…" for manager, technician and administrator, with routes protected by profile using React Router.',
+        'Operations dashboard with counters, service orders, alerts and available professionals, all with data from the API.',
+        'Admin panel with documents, users, audit log and document upload.',
+        'Integration of the three parts of the front end (manager, technician and administrator) into one site, with the technician app also working offline.',
+        'An "AI suggests, a person decides" flow: the manager reviews the recommended team and the approval calls the API. Reading the order is simulated in the prototype.',
+      ],
+    },
+  },
+  {
     slug: 'mundo-dos-pokemons',
     status: 'live',
     live: 'https://jpedroferreira07.github.io/mundo-dos-pokemons/',
